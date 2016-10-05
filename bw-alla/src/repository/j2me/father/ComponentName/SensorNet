@@ -1,0 +1,106 @@
+package appl.ComponentName;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import appl.util.ImageFactor;
+
+/**
+ * This classe is to sensro network component dinamic
+ * Composed of two leds components.
+ * The dinamic class extends from ObjectCanvas, hasn't two dinamic class
+ * in the same project.
+ * @by alla in 04/11/2003
+ * @version 0.0.0.1
+ */
+public class SensorNet extends ObjectCanvas{
+    /** Varibles for indicate x position and y position, of this ocmponent*/
+    private int px;
+    private int py;
+    /** Variable for inport value, indicate temperature value*/
+    private int inPort[] = new int[4];
+    /** Variable for icon name in display*/
+    private String icon;
+    /** Variable for unit this component*/
+    private String unit;
+    /** Variable for use external components, generate automatic*/
+    private boolean external = false;
+    
+    /**
+     * The constructor for this class
+     * @param _parentDisplay used for control display in device
+     * @param _nameIcon is the name for icon in display
+     * @param _maxScale is the unit utilized in component
+     */
+    public SensorNet(Display _parentDisplay, String _nameIcon, String _unit) {
+        super(_parentDisplay);
+        // Inicialize atributes
+        this.unit = _unit;
+        this.icon = _nameIcon;
+        // Set default values
+        this.inPort[0] = 0;
+        this.inPort[1] = 0;
+        this.inPort[2] = 0;
+        this.inPort[3] = 0;
+    }
+    
+    /**
+     * Method for set position values for this component
+     * @param _x is the x value for position
+     * @param _y is the y value for position
+     */
+    public void setPosition(int _x, int _y){
+        // Set values position
+        px = _x;
+        py = _y;
+    }
+    
+    /**
+     * This method is to set in port
+     * @param _inPortValue is the value for in port, the value default is zero
+     */
+    public void setInPort(int _inPortValue[]){
+        // Check for max value
+        this.inPort[0] = _inPortValue[0];
+        this.inPort[1] = _inPortValue[1];
+        this.inPort[2] = _inPortValue[2];
+        this.inPort[3] = _inPortValue[3];
+        // Check external applications
+        if(external)
+            externalBehavior();
+    }
+    
+    /**
+     * This method is to execute behavior of external components
+     */
+    public void externalBehavior(){
+        // add code
+    }
+    
+    /** Method for paint object*/
+    public void paint(Graphics g) {
+        // Image for icon image
+        Image iconImage;
+        // Get image of termometer
+        ImageFactor imageFactor = new ImageFactor();
+        Image image = imageFactor.getImageDisplay("/rssf.png");
+        
+        // Insert termometer image in display
+        g.drawImage(image, this.px, this.py, Graphics.LEFT|Graphics.TOP);
+        // Insert icon value for sensor net
+        if(!this.icon.equals("")){
+            iconImage = imageFactor.getImageDisplay("/"+this.icon+".png");
+            g.drawImage(iconImage, this.px + 2, this.py + 2, Graphics.LEFT|Graphics.TOP);
+        } else {
+            g.setColor(0x000000);
+            g.drawString(this.unit, this.px + 2, this.py + 2, Graphics.LEFT|Graphics.TOP);
+        }
+        // Insert labels for value in display
+        g.drawString(""+this.inPort[0], this.px + 110, this.py + 0, Graphics.LEFT|Graphics.TOP);
+        g.drawString(""+this.inPort[1], this.px + 32, this.py + 0, Graphics.LEFT|Graphics.TOP);
+        g.drawString(""+this.inPort[2], this.px + 9, this.py + 33, Graphics.LEFT|Graphics.TOP);
+        g.drawString(""+this.inPort[3], this.px + 80, this.py + 33, Graphics.LEFT|Graphics.TOP);
+        // Execute if there is external esecution
+        if(external)
+            super.paintElements(g);
+    }
+}

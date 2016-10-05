@@ -1,0 +1,99 @@
+/*
+ * <_component_name>.java  
+ *
+ * Created on <_date_of_created> 
+ */
+
+
+import javax.microedition.lcdui.*;
+
+/*
+ *
+ * @author <_author>
+ * @version 1.0
+ */
+public class <_component_name>{ 
+
+     <atribute_in>
+    /** This variable input for this component
+     *  used when component receiver some data.*/
+     private <_type_input_port_attribute> <_name_input_port_attribute>InPort<_dimension_input_port>;
+     </atribute_in>
+     <atribute_out>
+    /** This variable output for this component
+     *  used when component send some data.*/
+     private <_type_output_port_attribute> <_name_output_port_attribute>OutPort<_dimension_output_port>;
+     </atribute_out>
+     <atribute_in_out>
+    /** This variable in/output for this component
+     *  used when component receiver some data.*/
+     private <_type_in_out_put_port_attribute> <_name_in_out_put_port_attribute>InOutPort<_dimension_in_out_put_port>;
+     </atribute_in_out>
+
+    /** Creates a new instance of <_component_name>.*/
+     public <_component_name>(){
+     }
+     <methods_in_pv>
+    /** This method is to get output for this component, is private because
+      * the component has one outport.
+      * @return return the data in port value.
+      */ 
+     private <_type_input_port_attribute><_dimension_input_port> get<_name_input_port_method>InPort (){
+         return(this.<_name_input_port_attribute>InPort); 
+     }
+     </methods_in_pv><methods_in_pb>
+    /** This method is to set output for this component, is public because
+      * the component has one in port.
+      * @param _<_name_input_port_attribute>InPort is the new data in port value.
+      */
+     public void set<_name_input_port_method>InPort(<_type_input_port_attribute><_dimension_input_port> _<_name_input_port_attribute>InPort){
+         this.<_name_input_port_attribute>InPort = _<_name_input_port_attribute>InPort;
+     }
+     </methods_in_pb><methods_out_pb>
+    /** This method is to get output for this component, is public because
+      * the component has one outport.
+      * @return the data out port value.
+      */
+     public <_type_output_port_attribute><_dimension_output_port> get<_name_output_port_method>OutPort (){
+         return(this.<_name_output_port_attribute>OutPort);
+     }
+     </methods_out_pb><methods_out_pv>
+    /** This method is to set output for this component, is private because
+      * the component has one in port.
+      * @param _<_name_output_port_attribute>OutPort is the new value for data out port.
+      */
+     private void set<_name_output_port_method>OutPort(<_type_output_port_attribute><_dimension_output_port> _<_name_output_port_attribute>OutPort){
+        this.<_name_output_port_attribute>OutPort = _<_name_output_port_attribute>OutPort; 
+     }
+     </methods_out_pv><methods_in_out_pb>
+    /** This method is to get inoutput for this component, is public because
+      * the component has one inout port.
+      */
+     public <_type_in_out_put_port_attribute><_dimension_in_out_put_port> get<_name_in_out_put_port_method>InOutPort(){
+         return(this.<_name_in_out_put_port_attribute>InOutPort);
+     }
+
+    /** This method is to set inoutput for this component, is public because
+      * the component has one inout port.
+      * @param _<_name_in_out_put_port_attribute>InOutPort is the new value for data inout port.
+      */
+     public void set<_name_in_out_put_port_method>InOutPort(<_type_in_out_put_port_attribute><_dimension_in_out_put_port> _<_name_in_out_put_port_attribute>InOutPort){
+           <_name_in_out_put_port_attribute>InOutPort = _<_name_in_out_put_port_attribute>InOutPort;
+     }
+     </methods_in_out_pb>
+    /**
+      * This method is behaviour,
+      * this can be changed for user.
+      */
+     public void behaviour() {
+     }
+
+    /** This method is form wich the component to was showed,
+      * can be changed for user.
+      * @return the object for visualize appl.
+      */
+     public Object show(){
+       return new Object();
+     }
+
+}

@@ -1,0 +1,60 @@
+package appl.Temperature;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import appl.util.ImageFactor;
+
+/**
+ * This classe is to led component static
+ */
+public class LedStop extends ObjectCanvas {
+    /** Constant for indicate orange led*
+    public static final String WAIT = "wait";
+    /** Constant for indicate green led*
+    public static final String GO = "go";
+    /** Constant for indicate red led*
+    public static final String STOP = "stop";
+    /** Varibles for indicate x position and y position, of this ocmponent*/
+    private int px;
+    private int py;    
+    /** Variable for inport value, trur indicate on or off led*/
+    private Boolean inPort = new Boolean(false);
+    /** Variable for type of led, wait(orange), go(green), stop(red)*/
+    private String type = "stop";
+    
+    /**
+     * This method is to set in port
+     * @param _inPortValue is the value for in port, the value default is zero
+     */
+    public void setInPort(Boolean _inPortValue){
+        inPort = _inPortValue;
+    }
+
+    public void setConfig(){
+        //type = _type;
+    }
+    
+    public void behavior(){
+    }
+
+    /**
+     * Method for set position values for this component
+     * @param _x is the x value for position
+     * @param _y is the y value for position
+     */
+    public void setPosition(int _x, int _y){
+        // Set values position
+        px = _x;
+        py = _y;
+    }
+    
+    /** Method for behaviour of component */
+    public void paint(Graphics g) {
+        ImageFactor imageFactor;
+        Image led;
+
+        imageFactor = new ImageFactor();
+        led = imageFactor.getImageDisplay("/led"+inPort.booleanValue()+type+".png");
+        g.drawImage(led, this.px, this.py, Graphics.LEFT|Graphics.TOP);
+    }
+}

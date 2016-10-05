@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_79" class="java.beans.XMLDecoder">
+ <object class="java.util.Vector">
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>M:\alla\javawork\beanwatcher\src\repository\images\father\comunicator.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>52</int>
+    </void>
+    <void property="component_image_width">
+     <int>77</int>
+    </void>
+    <void property="component_name">
+     <string>Comunicator</string>
+    </void>
+    <void property="component_path">
+     <string>M:\alla\javawork\beanwatcher\src\repository\j2me\father</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>FUNCTI_COMP</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>M:\alla\javawork\beanwatcher\src\repository\images\father\datafusion.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>41</int>
+    </void>
+    <void property="component_image_width">
+     <int>61</int>
+    </void>
+    <void property="component_name">
+     <string>DataFusion</string>
+    </void>
+    <void property="component_path">
+     <string>M:\alla\javawork\beanwatcher\src\repository\j2me\father\DataFusion</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>FUNCTI_COMP</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>M:\alla\javawork\beanwatcher\src\repository\images\father\filter.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>59</int>
+    </void>
+    <void property="component_image_width">
+     <int>54</int>
+    </void>
+    <void property="component_name">
+     <string>Filter</string>
+    </void>
+    <void property="component_path">
+     <string>M:\alla\javawork\beanwatcher\src\repository\j2me\father</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>FUNCTI_COMP</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>M:\alla\javawork\beanwatcher\src\repository\images\child\thermometer.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>99</int>
+    </void>
+    <void property="component_image_width">
+     <int>32</int>
+    </void>
+    <void property="component_name">
+     <string>Temperature</string>
+    </void>
+    <void property="component_path">
+     <string>m:/alla/javawork/beanwatcher/src//repository/j2me//father/Temperature</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>VISUAL_COMP</string>
+    </void>
+    <void property="numPorts">
+     <int>1</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.port.ComunicationPort">
+    <void property="port_dimension">
+     <string>1</string>
+    </void>
+    <void property="port_format">
+     <int>0</int>
+    </void>
+    <void property="port_name">
+     <string>inPort</string>
+    </void>
+    <void property="port_type">
+     <string>Thermometer</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>M:\alla\javawork\beanwatcher\src\repository\images\child\sensor_net.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>48</int>
+    </void>
+    <void property="component_image_width">
+     <int>126</int>
+    </void>
+    <void property="component_name">
+     <string>ComponentName</string>
+    </void>
+    <void property="component_path">
+     <string>m:/alla/javawork/beanwatcher/src//repository/j2me//father/ComponentName</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>VISUAL_COMP</string>
+    </void>
+    <void property="numPorts">
+     <int>1</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.port.ComunicationPort">
+    <void property="port_dimension">
+     <string>1</string>
+    </void>
+    <void property="port_format">
+     <int>0</int>
+    </void>
+    <void property="port_name">
+     <string>inPort</string>
+    </void>
+    <void property="port_type">
+     <string>ComponentName</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>M:\alla\javawork\beanwatcher\src\repository\images\child\bargraph.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>66</int>
+    </void>
+    <void property="component_image_width">
+     <int>104</int>
+    </void>
+    <void property="component_name">
+     <string>ComponentName</string>
+    </void>
+    <void property="component_path">
+     <string>m:/alla/javawork/beanwatcher/release-2.0/src//repository/j2me//father/ComponentName</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>VISUAL_COMP</string>
+    </void>
+    <void property="numPorts">
+     <int>1</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.port.ComunicationPort">
+    <void property="port_dimension">
+     <string>1</string>
+    </void>
+    <void property="port_format">
+     <int>0</int>
+    </void>
+    <void property="port_name">
+     <string>inPort</string>
+    </void>
+    <void property="port_type">
+     <string>ComponentName</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/bargraph.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>66</int>
+    </void>
+    <void property="component_image_width">
+     <int>104</int>
+    </void>
+    <void property="component_name">
+     <string>ComponentName</string>
+    </void>
+    <void property="component_path">
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//father/ComponentName</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>VISUAL_COMP</string>
+    </void>
+    <void property="numPorts">
+     <int>3</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.port.ComunicationPort">
+    <void property="port_dimension">
+     <string>1</string>
+    </void>
+    <void property="port_format">
+     <int>0</int>
+    </void>
+    <void property="port_name">
+     <string>inPort</string>
+    </void>
+    <void property="port_type">
+     <string>ComponentName</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.port.ComunicationPort">
+    <void property="port_dimension">
+     <string>1</string>
+    </void>
+    <void property="port_format">
+     <int>0</int>
+    </void>
+    <void property="port_name">
+     <string>inPort</string>
+    </void>
+    <void property="port_type">
+     <string>ComponentName</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.port.ComunicationPort">
+    <void property="port_dimension">
+     <string>1</string>
+    </void>
+    <void property="port_format">
+     <int>0</int>
+    </void>
+    <void property="port_name">
+     <string>inPort</string>
+    </void>
+    <void property="port_type">
+     <string>ComponentName</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/bargraph.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>66</int>
+    </void>
+    <void property="component_image_width">
+     <int>104</int>
+    </void>
+    <void property="component_name">
+     <string>ComponentName</string>
+    </void>
+    <void property="component_path">
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//father/ComponentName</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>VISUAL_COMP</string>
+    </void>
+    <void property="numPorts">
+     <int>1</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.port.ComunicationPort">
+    <void property="port_dimension">
+     <string>1</string>
+    </void>
+    <void property="port_format">
+     <int>0</int>
+    </void>
+    <void property="port_name">
+     <string>inPort</string>
+    </void>
+    <void property="port_type">
+     <string>ComponentName</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/bargraph.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>66</int>
+    </void>
+    <void property="component_image_width">
+     <int>104</int>
+    </void>
+    <void property="component_name">
+     <string>ComponentName</string>
+    </void>
+    <void property="component_path">
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//father/ComponentName</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>VISUAL_COMP</string>
+    </void>
+    <void property="numPorts">
+     <int>1</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.port.ComunicationPort">
+    <void property="port_dimension">
+     <string>1</string>
+    </void>
+    <void property="port_format">
+     <int>0</int>
+    </void>
+    <void property="port_name">
+     <string>inPort</string>
+    </void>
+    <void property="port_type">
+     <string>ComponentName</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/bargraph.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>66</int>
+    </void>
+    <void property="component_image_width">
+     <int>104</int>
+    </void>
+    <void property="component_name">
+     <string>ComponentName</string>
+    </void>
+    <void property="component_path">
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//father/ComponentName</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>VISUAL_COMP</string>
+    </void>
+    <void property="numPorts">
+     <int>1</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.port.ComunicationPort">
+    <void property="port_dimension">
+     <string>1</string>
+    </void>
+    <void property="port_format">
+     <int>0</int>
+    </void>
+    <void property="port_name">
+     <string>inPort</string>
+    </void>
+    <void property="port_type">
+     <string>ComponentName</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO">
+    <void property="component_image">
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/bargraph.gif</string>
+    </void>
+    <void property="component_image_height">
+     <int>66</int>
+    </void>
+    <void property="component_image_width">
+     <int>104</int>
+    </void>
+    <void property="component_name">
+     <string>ComponentName</string>
+    </void>
+    <void property="component_path">
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//father/ComponentName</string>
+    </void>
+    <void property="component_typeAppl">
+     <string>VISUAL_COMP</string>
+    </void>
+    <void property="numPorts">
+     <int>1</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="br.ufpi.die.jflash.port.ComunicationPort">
+    <void property="port_dimension">
+     <string>1</string>
+    </void>
+    <void property="port_format">
+     <int>0</int>
+    </void>
+    <void property="port_name">
+     <string>inPort</string>
+    </void>
+    <void property="port_type">
+     <string>ComponentName</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

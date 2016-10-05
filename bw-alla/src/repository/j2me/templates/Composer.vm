@@ -1,0 +1,192 @@
+package appl;
+
+import javax.microedition.lcdui.*;
+import java.util.Hashtable;
+
+
+#foreach( $name in $listAllComponent )
+import appl. $name.getType(). $name.getType();
+#end
+
+/** This class is to compose components of
+ * the applications genretaed in BeanWatcher
+ * This application use communicator, datafusion and
+ * same components of BeanWather
+ *
+ * For other application the composer to be created
+ */
+public class Composer {
+  
+#foreach( $name in $listAllComponent )
+    $name.getDescription()
+    private $name.getType() $name.getName();
+#end
+  
+    /** Variable inserted for Filter component */
+    Filter          filter;
+    /** Variable inserted for Comunicator component */
+    Comunicator     comunicator;
+    /** Variable for receiver datas from network [data receiver]*/
+    private byte dataRecv[];
+    /** Variable for names of aplications [name list]*/
+    private String[] names;
+    /** Variable for paths of aplications (.class) [path list]*/
+    private String[] paths;
+    /** Variable for indicate number of aplication */
+    private int numberAppls;
+    /** Variable for aplications objects [applications object]*/
+    private Object objects[];
+    
+    /** Creates a new instance of Composer */
+    public Composer() {
+        /* Modify the number of appl*/
+        numberAppls = $numberAppls;
+        
+        /*Inicialize ocmponents utils*/
+        filter      = new Filter(numberAppls);
+        comunicator = new Comunicator();
+
+###foreach( $name in $listConstruct )
+#foreach( $name in $listAllComponent )
+        $name.getName() = new $name.getType()();
+#end
+
+        names   = new String[numberAppls];
+        paths   = new String[numberAppls];
+        objects = new Object[numberAppls];
+        
+        /* Insert new appl if necessary*/
+#foreach( $name in $listApplComponent )
+        names[$_velocityCount]   = "$name.getType()";
+        paths[$_velocityCount]   = "$name.getType()";
+        objects[$_velocityCount] = $name.getName();
+
+#end
+    }
+    
+    /** Method for get CalssPath
+     * @param _index index of aplication for to get class path
+     * @return the aplication's class path of index passed
+     */
+    public String getClassPath(int _index){
+        return paths[_index];
+    }
+    
+    /** Method for get CalssPath
+     * @return the aplication's class path
+     */
+    public String[] getClassPath(){
+        return paths;
+    }
+    
+    /** Method for get CalssName
+     * @param _index index of aplication for to get class name
+     * @return the aplication's class name of index passed
+     */
+    public String getClassName(int _index){
+        return names[_index];
+    }
+    
+    /** Method for get CalssName
+     * @return the aplication's class name
+     */
+    public String[] getClassName(){
+        return names;
+    }
+    
+    /** Method for get number of aplication
+     * @return the number of applications
+     */
+    public int getNumberAppls(){
+        return numberAppls;
+    }
+    
+    /** Method for get object for index passed
+     * @param _index index of aplication for to get object
+     * @return the object of index passed
+     */
+    public Object getObject(int _index){
+        return objects[_index];
+    }
+    
+    /** Method for get object for index passed
+     * @return the object of index passed
+     */
+    public Object[] getObject(){
+        return objects;
+    }
+    
+    /** Method for destroy applications */
+    public void destroyApp(){
+        nullPlayer();
+    }
+    
+    /** Method for set all application for null */
+    public synchronized void nullPlayer() {
+        /* Insert new appl if necessary*/
+###foreach( $name in $listNull )
+#foreach( $name in $listApplComponent )
+        $name.getName() = null;
+#end
+    }
+    
+    /** Method for create intance for index application passed
+     * @param _index index of application wich to be executed
+     * @param _display used for set application wich to be executed
+     */
+    public void instanceObject(int _index, Display _display){
+        Hashtable valueFilter = new Hashtable();
+
+        /* Insert new appl if necessary*/
+        switch(_index){
+#foreach( $name in $listApplComponent )
+            case $_velocityCount:{
+                if (filter.getIndexAppl() == _index){
+                    //Dependences
+$name.getDependenceCode()
+                    valueFilter.put("$name.getType()", $name.getDependence().getName() .getOutPort());
+
+                    $name.getName() .setInPort(valueFilter);
+                    $name.getName() .setParentDisplay(_display);
+                    _display.setCurrent($name.getName());
+                    $name.getName() .repaint();
+
+                    _display.setCurrent($name.getName());
+                } else {
+                    Alert alert = new Alert("No data received!!!");
+                    _display.setCurrent(alert, _display.getCurrent());
+                }
+                break;
+            }
+#end
+        }
+    }
+    
+    /** Method for run application wich index passed
+     * @param _index index of application wich to be executed
+     * @param _display used for set application wich to be executed
+     */
+    public void runSelectedAppl(int _index, Display _display){
+        instanceObject(_index, _display);
+    }
+    
+    /** Method for start communication component */
+    public void startCommunication(){
+        comunicator.behavior();
+    }
+    
+    /** Method for set behavior of composer */
+    public void behavior(){
+        boolean recvData;
+        recvData = comunicator.getRecvControl();
+        if (recvData){
+            //There is data to be filter
+            filter.setFilterControl(recvData);
+            //Set values receved
+            filter.setInPort(comunicator.getOutPort());
+            //Redirecet value received
+            filter.behavior();
+            comunicator.setRecvControl(false);
+        }
+    }
+}

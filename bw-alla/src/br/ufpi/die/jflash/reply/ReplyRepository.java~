@@ -1,0 +1,84 @@
+/*
+ * ReplyRepository.java
+ *
+ * Created on 2 de Junho de 2003, 18:14
+ *
+ * Ésta classe faz a replicação de todo o
+ * repositório de componentes, para uma
+ * linguagem alvo.
+ */
+
+package br.ufpi.die.jflash.reply;
+import  br.ufpi.die.jflash.dto.*;
+import  br.ufpi.die.jflash.port.*;
+import  br.ufpi.die.jflash.factor.*;
+import  br.ufpi.die.jflash.datastore.*;
+import  setings.*;
+import  java.util.*;
+import  java.io.*;
+/**
+ *
+ * @author  Lincoln Souza Rocha
+ * @version 1.0
+ */
+public class ReplyRepository {
+    
+    /** Este atributo armazena todo o repositório de componentes.*/
+    private Vector repository;
+    
+    /** Este objeto faz a geração do componente.*/
+    private ManagerFactor factor;
+    
+    /** Este objeto é responsável por fazer a gerência do arquivo de dados.*/
+    private ManagerDataStore maneger_ds;
+    
+    /***/
+    private ManagerSetings manager_st;
+    
+    private String component_path =File.separator+"repository"+File.separator;
+    
+    /** Cria uma nova instancia de ReplyRepository.*/
+    public ReplyRepository(String _path_store) {
+        this.repository = new Vector();
+        this.maneger_ds = new ManagerDataStore(_path_store);
+        this.manager_st = new ManagerSetings();        
+        this.factor = new ManagerFactor();
+        
+    }
+    /**
+     * Este método faz a replicação de todo o repositório
+     *
+     * @param _language é a linguagem alvo da replicação.
+     */
+    public void reply(String _language,String _component_path){
+        
+        this.component_path = _component_path;
+        this.repository = this.maneger_ds.loadRepository();
+        ColectorDTO description_component;
+        int i=0;
+        
+        // Este loop duplo faz a replicação de todo o repositório de componentes JFlash
+        while((i < this.repository.size()) && (this.repository.get(i) instanceof ColectorDTO)){
+            
+            /* Esta atribuição faz a cópia do objeto ColectorDTO que está no vetor repository
+             * cada ColectorDTO possui refêrencias  a ceca de cada componente gerado.
+             */
+            description_component = (ColectorDTO) this.repository.get(i++);
+            description_component.setComponent_path(this.component_path);
+            AllComunicationPort allports = new AllComunicationPort();
+            // Neste loop são copiados todas as portas referentes ao objeto descrito em ClectorDTO
+            while((i < this.repository.size()) && (repository.get(i) instanceof ComunicationPort)){
+                
+                /* Todas as portas referentes ao componente descrito em ColectorDTO são armazenadas no
+                 * objeto allports
+                 */
+                allports.addPort((ComunicationPort) this.repository.get(i++));
+                
+            }
+            
+            // Aqui é gerado cada componente do repositório replicado.
+            this.factor.createComponent(_language,description_component,allports);
+        }
+    }
+    
+}

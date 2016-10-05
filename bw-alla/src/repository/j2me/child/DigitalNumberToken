@@ -1,0 +1,60 @@
+package appl.$dir;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import appl.util.ImageFactor;
+
+/**
+ * This classe is to digital number token component static
+ * @version 0.0.0.2
+ */
+public class DigitalNumberToken extends ObjectCanvas {
+    /** Contants for check min and max values*/
+    public static final String POINT = "point"; //.
+    public static final String COLON = "colon"; //:
+    public static final String HYPHEN = "hyphen"; //-
+    public static final String UNDERSCORE = "underscore"; //_
+    public static final String BAR = "bar"; // /
+    public static final String OPSITE_BAR = "opsite_bar"; // \
+    
+    /** Varibles for indicate x position and y position, of this ocmponent*/
+    private int px;
+    private int py;
+    /** Variable for inport value, trur indicate on or off led*/
+    private String inPort;
+    
+    public DigitalNumberToken(Display _parentDisplay, String _separetor){
+        super(_parentDisplay);
+        inPort = _separetor;
+    }
+    
+    /**
+     * This method is to set in port
+     * @param _inPortValue is the value for in port, the value default is zero
+     */
+    public void setInPort(String _inPortValue){
+            inPort = _inPortValue;
+    }
+ 
+    /**
+     * Method for set position values for this component
+     * @param _x is the x value for position
+     * @param _y is the y value for position
+     */
+    public void setPosition(int _x, int _y){
+        // Set values position
+        px = _x;
+        py = _y;
+    }
+    
+    /** Method for behaviour of component */
+    public void paint(Graphics g){
+        ImageFactor imageFactor;
+        Image token;
+        
+        imageFactor = new ImageFactor();
+        token = imageFactor.getImageDisplay("/"+inPort+".png");
+        g.drawImage(token, this.px, this.py, Graphics.LEFT|Graphics.TOP);
+    }
+}
+

@@ -1,0 +1,61 @@
+/*
+ * MyHTTP.java
+ *
+ * Created on November 7, 2003, 3:54 PM
+ */
+
+package appl;
+
+import java.io.IOException;
+import javax.microedition.io.*;
+import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
+/**
+ * This class is to represent communicator HTTP component
+ * @author  alla
+ * @version 0.0.0.1
+ */
+public class ComunicatorHTTP {
+    /** Variable for out port, sendo for filter component an byte[]*/
+    private byte outPort[];
+    /** Variable for url path, for connect*/
+    private String url;
+    
+    /** Creates a new instance of MyHTTP */
+    public ComunicatorHTTP(String _url) {
+        url = _url;
+    }
+    
+    /**
+     * This method is to get out port
+     * @return the in port value
+     */
+    public byte[] getOutPort(){
+        return outPort;
+    }
+    
+    /**
+     * This method is to do http get call
+     */
+    public void httpGet() throws IOException {
+         StreamConnection c = null;
+         InputStream s = null;
+         ByteArrayOutputStream o = new ByteArrayOutputStream();
+         try {
+             c = (StreamConnection)Connector.open(this.url);
+             s = c.openInputStream();
+             int ch;
+             while ((ch = s.read()) != -1) {
+                 o.write(ch);
+             }
+             o.flush();
+             o.close();
+             outPort = o.toByteArray();
+         } finally {
+             if (s != null) 
+                 s.close();
+             if (c != null)
+                 c.close();
+         }
+     }
+}

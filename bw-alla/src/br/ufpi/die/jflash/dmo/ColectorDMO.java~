@@ -1,0 +1,97 @@
+/*
+ * ColectorDMO.java
+ *
+ * Created on 2 de Junho de 2003, 16:22
+ *
+ * Ésta classe faz a modelagem dos dados coletados
+ * para que possa ser criado o novo componente.
+ */
+
+package br.ufpi.die.jflash.dmo;
+import  br.ufpi.die.jflash.dto.*;
+import  br.ufpi.die.jflash.port.*;
+import  br.ufpi.die.jflash.factor.*;
+import  br.ufpi.die.jflash.datastore.*;
+import java.util.*;
+/**
+ *
+ * @author  Lincoln Souza Rocha
+ * @version 1.0
+ */
+public class ColectorDMO{
+    
+    /** Este objeto armazena a descrição do novo componente. */
+    private ColectorDTO description_component;    
+    
+    /** Este atributo armazena todo repositório de componentes. */
+    private Vector repository;
+    
+    /** Este atributo armazena todas as portas para efeito de geração deo componente.*/
+    private AllComunicationPort allports;
+    
+    /** Este objeto faz a geração de fato do componente.*/
+    private ManagerFactor factor;    
+    
+    /** Este objeto é responsável por fazer a gerência do arquivo de dados.*/
+    private ManagerDataStore manager_ds;
+    
+    /** Cria uma nova instância de ColectorDMO */
+    public ColectorDMO() {
+        this.description_component = new ColectorDTO();
+        this.allports = new AllComunicationPort();        
+        this.repository = new Vector();                
+        this.factor = new ManagerFactor();
+    }
+    
+    /** 
+      * Este método permite adicionar portas no componente.
+      *
+      * @param _port_format é o formato da porta.
+      * @param _port_type é o tipo da porta.
+      * @param _port_name é o nome da porta.
+      * @param _port_dimension é a dimenção da porta.
+      */
+    public void addPort(int _port_format,String _port_type,String _port_name,String _port_dimension){
+        ComunicationPort cp = new ComunicationPort();
+        cp.setPort_name(_port_name);
+        cp.setPort_type(_port_type);
+        cp.setPort_format(_port_format);
+        cp.setPort_dimension(_port_dimension);
+        this.allports.addPort(cp);        
+    }
+    
+    /** 
+      * Este método solicita a geração do  novo componente.
+      *
+      * @param _language é a linguagem alvo para a geração do componente. "j2me" ou "c" ou ..
+      * @param _author_name é o nome do criador do componente.
+      * @param _component_name é o nome do novo componente.
+      * @param _component_path é o path donde deve ser gerado o novo componente.
+      */
+    public void newComponent(String _language,String _author_name,String _component_name,String _component_path){
+        
+        this.manager_ds = new ManagerDataStore(_component_path);
+        
+        this.description_component.setAuthor_name(_author_name);        
+        this.description_component.setComponent_name(_component_name);
+        this.description_component.setComponent_path(_component_path);
+        this.description_component.setNumPorts(this.allports.numPorts());       
+        
+        
+        this.repository = this.manager_ds.loadRepository();
+        this.repository.addElement(this.description_component);
+        // Adiciona o novo componente ao vetor do repositório
+        for(int i=0; i < this.allports.numPorts(); i++){
+            this.repository.addElement(this.allports.getPort(i));
+        }        
+        
+        // Faz o arquivamento dos dados sobre o componente.
+        this.manager_ds.storeComponent(this.repository);
+
+        // Faz a geração do novo componente.
+        this.factor.createComponent(_language,this.description_component,this.allports);                
+        
+        
+    }    
+    
+}

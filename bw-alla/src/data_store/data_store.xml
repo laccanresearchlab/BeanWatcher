@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.4.2" class="java.beans.XMLDecoder"> 
+ <object class="java.util.Vector"> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="author_name"> 
+     <string>Alla</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/father/comunicator.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>52</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>77</int> 
+    </void> 
+    <void property="component_name"> 
+     <string>Comunicator</string> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/j2me/father</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>FUNCTI_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="author_name"> 
+     <string>Alla</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>M:\alla\javawork\beanwatcher\src\images\repository\datafusion.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>40</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>60</int> 
+    </void> 
+    <void property="component_name"> 
+     <string>DataFusion</string> 
+    </void> 
+    <void property="component_path"> 
+     <string>M:\alla\javawork\wizard\src\repository\j2me</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>FUNCTI_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="author_name"> 
+     <string>Alla</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>M:\alla\javawork\beanwatcher\src\images\repository\rssf_barometer.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>83</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>184</int> 
+    </void> 
+    <void property="component_name"> 
+     <string>RssfBarometer</string> 
+    </void> 
+    <void property="component_path"> 
+     <string>M:\alla\javawork\wizard\src\repository\j2me</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="author_name"> 
+     <string>Alla</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>M:\alla\javawork\beanwatcher\src\images\repository\rssf_hygrometer.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>83</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>184</int> 
+    </void> 
+    <void property="component_name"> 
+     <string>RssfHygrometer</string> 
+    </void> 
+    <void property="component_path"> 
+     <string>M:\alla\javawork\wizard\src\repository\j2me</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="author_name"> 
+     <string>Alla</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>M:\alla\javawork\beanwatcher\src\images\repository\rssf_thermometer.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>83</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>184</int> 
+    </void> 
+    <void property="component_name"> 
+     <string>RssfThermometer</string> 
+    </void> 
+    <void property="component_path"> 
+     <string>M:\alla\javawork\wizard\src\repository\j2me</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="author_name"> 
+     <string>Alla</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>M:\alla\javawork\beanwatcher\src\images\repository\rssf_phmeter.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>83</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>184</int> 
+    </void> 
+    <void property="component_name"> 
+     <string>RssfPhmeter</string> 
+    </void> 
+    <void property="component_path"> 
+     <string>M:\alla\javawork\wizard\src\repository\j2me</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="author_name"> 
+     <string>Alla</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>M:\alla\javawork\beanwatcher\src\images\repository\filter.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>59</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>54</int> 
+    </void> 
+    <void property="component_name"> 
+     <string>Filter</string> 
+    </void> 
+    <void property="component_path"> 
+     <string>M:\alla\javawork\wizard\src\repository\j2me</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>FUNCTI_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="author_name"> 
+     <string>alla</string> 
+    </void> 
+    <void property="component_name"> 
+     <string>Alla</string> 
+    </void> 
+    <void property="component_path"> 
+     <string>M:\alla\javawork\wizard\src\repository</string> 
+    </void> 
+    <void property="numPorts"> 
+     <int>4</int> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.port.ComunicationPort"> 
+    <void property="port_dimension"> 
+     <string>1D</string> 
+    </void> 
+    <void property="port_format"> 
+     <int>0</int> 
+    </void> 
+    <void property="port_name"> 
+     <string>TestePort</string> 
+    </void> 
+    <void property="port_type"> 
+     <string>BOOLEAN</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.port.ComunicationPort"> 
+    <void property="port_dimension"> 
+     <string>1D</string> 
+    </void> 
+    <void property="port_format"> 
+     <int>0</int> 
+    </void> 
+    <void property="port_name"> 
+     <string>asdasdsad</string> 
+    </void> 
+    <void property="port_type"> 
+     <string>BOOLEAN</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.port.ComunicationPort"> 
+    <void property="port_dimension"> 
+     <string>2D</string> 
+    </void> 
+    <void property="port_format"> 
+     <int>2</int> 
+    </void> 
+    <void property="port_name"> 
+     <string>asdasdasd</string> 
+    </void> 
+    <void property="port_type"> 
+     <string>BOOLEAN</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.port.ComunicationPort"> 
+    <void property="port_dimension"> 
+     <string>2D</string> 
+    </void> 
+    <void property="port_format"> 
+     <int>2</int> 
+    </void> 
+    <void property="port_name"> 
+     <string>asdafssgfdsgdfgdfg</string> 
+    </void> 
+    <void property="port_type"> 
+     <string>BOOLEAN</string> 
+    </void> 
+   </object> 
+  </void> 
+ </object> 
+</java> 

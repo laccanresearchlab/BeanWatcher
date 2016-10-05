@@ -1,0 +1,54 @@
+package appl.$dir;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import appl.util.ImageFactor;
+
+/**
+ * This classe is to label component static
+ * @author alla
+ * @version 0.0.0.2
+ */
+public class Label extends ObjectCanvas{
+    /** Variable for inport value, trur indicate on or off led*/
+    private String inPort;
+    /** Varibles for indicate x position and y position, of this ocmponent*/
+    private int px;
+    private int py;
+    
+    /**
+     * The constructor for this class
+     */
+    public Label(Display _parentDisplay, String _label){
+        super(_parentDisplay);
+        inPort = _label;
+        // Set values position
+        px = 0;
+        py = 0;
+    }
+    
+    /**
+     * This method is to set in port
+     * @param _inPortValue is the value for in port, the value default is zero
+     */
+    public void setInPort(String _inPortValue){
+        inPort = _inPortValue;
+    }
+    
+    /**
+     * Set position in display
+     * @param _x is the x position
+     * @param _y is the y position
+     */
+    public void setPosition(int _x, int _y){
+        // Set values position
+        px = _x;
+        py = _y;
+    }
+    
+    /** Method for behaviour of component */
+    public void paint(Graphics g){
+        g.setColor(0x000000);
+        g.drawString(""+inPort, this.px, this.py, Graphics.LEFT|Graphics.TOP);
+    }
+}

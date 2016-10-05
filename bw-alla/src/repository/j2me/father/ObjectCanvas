@@ -1,0 +1,101 @@
+package appl;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import javax.microedition.media.*;
+import java.util.Vector;
+import appl.util.ImageFactor;
+
+/**
+ * This classe is to object canvas application
+ * @by alla in 12/08/2003
+ * @version 0.0.0.4
+ */
+public class ObjectCanvas extends Canvas implements CommandListener{
+    /** Command back in display device*/
+    private Command backCommand = new Command("Back", Command.BACK, 1);
+    /** Current display passed in constructor*/
+    private Display parentDisplay;
+    /**Vector for all component image used*/
+    public Vector objectVect;
+    /**Vector for positions of components used*/
+    public Vector positionsVect;
+    
+    /**
+     * The constructor for this class
+     * @param _parentDisplay used for control display in device
+     */
+    public ObjectCanvas(Display _parentDisplay) {
+        this.parentDisplay = _parentDisplay;
+        initialize();
+    }
+    
+    /** Method for inicialize object canvas application */
+    void initialize() {
+        addCommand(backCommand);
+        objectVect = new Vector();
+        positionsVect = new Vector();
+    }
+    
+    /**
+     * Method for get action from display, in thsi case only back action
+     * @param c, command used
+     * @param s, display destin for action setted
+     */
+    public void commandAction(Command c, Displayable s) {
+        if (s == this) {
+            if (c == backCommand) {
+                //close();
+                /* Debug, find solution for this line code*/
+                parentDisplay.setCurrent(BeanWatcher.getList());
+                /* Debug end*/
+            }
+        }
+    }
+    
+    /**
+     * Thids method is to add elements in canvas, the element can be image
+     * and strings.
+     * @paran _element is the element add
+     * @param _x, is the x position for this element
+     * @param _y, is the y position for this element
+     */
+    public void addElement(Object _element, int _x, int _y){
+        int position[] = new int[2];
+        position[0] = _x;
+        position[1] = _y;
+        // Add in element vector
+        objectVect.addElement(_element);
+        // Add in position vetor
+        positionsVect.addElement(position);
+    }
+    
+    /** This method is to paint cavas*/
+    public void paint(Graphics g){
+        // set defaulrt background, C0C0C0 indicate gray color
+        g.setColor(0xC0C0C0);
+        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+        // paint elements add in canvas
+        this.paintElements(g);
+    }
+    
+    /**
+     * This method is to paint elements insert for this canvas
+     */
+    protected void paintElements(Graphics g){
+        int i;
+        ObjectCanvas objCanvas;
+        int[] posCurrent = new int[2];
+        
+        // Check all elements
+        for(i = 0; i < objectVect.size(); i++){
+            posCurrent = (int[])positionsVect.elementAt(i);
+            objCanvas = (ObjectCanvas)objectVect.elementAt(i);
+            objCanvas.setPosition(posCurrent[0], posCurrent[1]);
+            objCanvas.paint(g);
+        }
+    }
+    
+    public void setPosition(int _x, int _y) {
+    }
+}

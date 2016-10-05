@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/apache-ant-zip-1.8.0.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/antlr.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/bcel-5.0rc1.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/commons-collections-2.0.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/fop-bin-0_17_0.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/jdom-b9.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/junit-3.7.0.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/log4j-1.1.3.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/log4j-core.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/logkit-1.0.1.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/oro.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/servlet-2.2.8.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/w3c.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/werken-xpath-0.9.4.jar"/>
+	<classpathentry kind="lib" path="/Users/randy/Desenvolvimento/Eclipse JEE/BW/bw-alla/utils/velocity-dep-1.3.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

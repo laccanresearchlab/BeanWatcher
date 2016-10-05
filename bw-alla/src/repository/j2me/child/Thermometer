@@ -1,0 +1,126 @@
+package appl.$dir;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import appl.util.ImageFactor;
+
+/**
+ * This class is to thermometer component dinamic
+ * Composed of two leds components.
+ * The dinamic class extends from ObjectCanvas, hasn't two dinamic class
+ * in the same project.
+ * @by alla in 04/11/2003
+ * @version 0.0.0.2
+ */
+public class Thermometer extends ObjectCanvas{
+    private static final int MAX_VALUE = 69;
+    /** Variable for inport value, indicate temperature value*/
+    private Integer inPort = new Integer(1);
+    /** Variable for outport value*/
+    private Integer outPort = new Integer(1);
+    /** Variable for min and max temperature scales*/
+    private int minScale;
+    private int maxScale;
+    /** Varibles for indicate x position and y position, of this ocmponent*/
+    private int px;
+    private int py;    
+    
+    /**
+     * This method is to set in port
+     * @param _inPortValue is the value for in port, the value default is zero
+     */
+    public void setInPort(Integer _inPortValue){
+        // Check for max value
+        if(inPort.intValue() <= this.MAX_VALUE){
+            inPort = _inPortValue;
+        }
+    }
+    
+    public Integer getOutPort(){
+        return outPort;
+    }
+    
+    public void setConfig(int _minScale, int _maxScale){
+        minScale = _minScale;
+        maxScale = _maxScale;
+    }
+    
+    public void behavior(){
+        outPort = inPort;
+    }
+
+    /**
+     * Method for set position values for this component
+     * @param _x is the x value for position
+     * @param _y is the y value for position
+     */
+    public void setPosition(int _x, int _y){
+        // Set values position
+        px = _x;
+        py = _y;
+    }
+    
+    /** Method for paint object*/
+    public void paint(Graphics g) {
+        //image tremomether position
+        int imgX;
+        int imgY;
+        //scale positions
+        int minScaleX;
+        int minScaleY;
+        int maxScaleX;
+        int maxScaleY;
+        //termostato position
+        int termoX;
+        int termoY;
+        //temperature value position
+        int tempStX;
+        int tempStY;
+        //display size;
+        int displayX;
+        int displayY;
+        //image size
+        int imgWidth;
+        int imgHeight;
+        
+        // Get image of termometer
+        ImageFactor imageFactor = new ImageFactor();
+        Image image = imageFactor.getImageDisplay("/thermometer.png");
+        // Values for image size
+        imgWidth = image.getWidth();
+        imgHeight = image.getHeight();
+        // Values for display positions
+        displayX = this.getWidth();
+        displayY = this.getHeight();
+        // Position for termometer image
+        imgX = 20;
+        imgY = 0;
+        // Position for min scale value
+        minScaleX = (imgX-1) + imgWidth/2 - 28;
+        minScaleY = (imgHeight + imgY) - 40;
+        // Position for max scale value
+        maxScaleX = minScaleX;
+        maxScaleY = imgY;
+        // Position for temperature value
+        tempStX = imgWidth + 30;
+        tempStY = imgHeight - 20;
+        // Position for temperature value temperature indicator
+        termoX = (imgX-1) + imgWidth/2;
+        termoY = ((imgHeight + imgY) - 20) - inPort.intValue();
+        
+        // Set default values for display
+        g.setColor(0xC0C0C0);
+        g.fillRect(this.px, this.py, displayX, displayY);
+        // Insert termometer image in display
+        g.drawImage(image, this.px+imgX, this.py+imgY, Graphics.LEFT|Graphics.TOP);
+        // Insert scale default values in display
+        g.setColor(0x000000);
+        g.drawString(""+minScale, this.px+minScaleX, this.py+minScaleY, Graphics.LEFT|Graphics.TOP);
+        g.drawString(""+maxScale, this.px+maxScaleX, this.py+maxScaleY, Graphics.LEFT|Graphics.TOP);
+        // Insert temperature values in display
+        g.drawString(inPort.intValue() + " F", this.px+tempStX, this.py+tempStY, Graphics.LEFT|Graphics.TOP);
+        // Insert temperature indicator in display
+        g.setColor(102, 0, 0);
+        g.fillRect(this.px+termoX, this.py+termoY, 2, inPort.intValue());
+    }
+}

@@ -1,0 +1,72 @@
+/*
+ * ManagerDataStore.java
+ *
+ * Created on 8 de Junho de 2003, 01:50
+ *
+ * Ésta classe faz o arquivamento dos dados coletados
+ * em um arquivo XML, para possibilitar a sua possível
+ * replicação.
+ */
+
+package br.ufpi.die.jflash.datastore;
+import  setings.*;
+import  java.util.*;
+import  java.beans.*;
+import  java.io.*;
+/**
+ *
+ * @author  Lincoln Souza Rocha
+ * @version 1.0
+ */
+public class ManagerDataStore {    
+    
+    /** Este atributo guarda o path para o arquivo data_store.xml. */
+    private static String parh_data_store;      
+    
+    
+    /** Cria uma nova instancia de ManagerDataStore.*/
+    public ManagerDataStore(String _path){                
+            this.parh_data_store = _path;       
+            
+    }
+    
+    /**
+     * Este método carrega o todo arquivo de data_store.xml
+     * que é a representação abstrata de todos os componentes.
+     *
+     * @return repository que é a representação de todos os
+     *  componentes do repositório.
+     */
+    public Vector loadRepository(){
+        Vector repository = new Vector();
+        try{            
+            FileInputStream xml  = new FileInputStream(this.parh_data_store);
+            BufferedInputStream buff =  new BufferedInputStream(xml);
+            XMLDecoder d = new XMLDecoder(buff);
+            repository = (Vector) d.readObject();
+            d.close();
+        }catch(FileNotFoundException fnfe){
+        }
+        
+        return(repository);
+    }
+    
+    /**
+     * Este método é encarregado de armazenar os dados referentes ao
+     * componente no arquivo de data_store.xml.
+     *
+     * @param _repository são os componentes que serão inseridos no
+     * arquivo de informações sobre os componentes.
+     */
+    public void storeComponent(Vector _repository){
+        try{          
+            FileOutputStream xml = new FileOutputStream(this.parh_data_store);
+            BufferedOutputStream buff = new BufferedOutputStream(xml);
+            XMLEncoder e = new XMLEncoder(buff);
+            int i;
+            e.writeObject(_repository);
+            e.close();
+        }catch(FileNotFoundException fnfe){
+        }
+    }
+}

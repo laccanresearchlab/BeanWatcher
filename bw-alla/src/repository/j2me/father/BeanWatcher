@@ -1,0 +1,124 @@
+package appl;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+
+/** This is main class in BeanWatcher project.
+ * Contain main interface for applications generated
+ */
+public class BeanWatcher extends MIDlet implements CommandListener, Runnable{
+    
+    /** Variable with compose the components */    
+    private Composer composer = new Composer();
+    
+    /** Variable wich receive all components in aplication [applications]*/    
+    private static Object objects[];
+    
+    /** Variable for display exit command in celular */    
+    private Command exitCommand;
+    
+    /** Variable for display play command in celular */    
+    private Command playCommand;
+    
+    /** Variable for control display */    
+    private Display display;
+    
+    /** Variable for list aplications */    
+    private static List theList;
+    
+    /** Variable for current instance of BeanWatcher */    
+    private static BeanWatcher instance = null;
+    
+    /** Index for current application */    
+    int index = 0;
+    
+    /** Method for get current instance of BeanWatcher
+     * @return return the current instance of BeanWatcher aplication
+     */    
+    static public BeanWatcher getInstance() {
+        return instance;
+    }
+    
+    /** Method for get the list of aplication, wich to be vizualized in display
+     * @return return the list of aplications
+     */    
+    static public List getList() {
+        return theList;
+    }
+    
+    /** The constructor of class */    
+    public BeanWatcher() {
+        int size;
+        instance = this;
+        display  = Display.getDisplay(this);
+        theList  = new List("BeanWatcher", Choice.IMPLICIT);
+        
+        objects = composer.getObject();
+        
+        exitCommand = new Command("Exit", Command.EXIT, 1);
+        playCommand = new Command("Play", Command.ITEM, 1);
+        theList.addCommand(playCommand);
+        theList.addCommand(exitCommand);
+        theList.setCommandListener(this);
+        fillList();
+    }
+    
+    /** Method for composed the list of aplications */    
+    private void fillList() {
+        String title;
+        int    size;
+        size = composer.getNumberAppls();
+        for(int i = 0; i < size; i++){
+            title   = composer.getClassName(i);
+            theList.append(title, null);
+        }
+    }
+    
+    /** Method for start the aplication BeanWatcher */    
+    public void startApp() {
+        display.setCurrent(theList);
+        composer.startCommunication();
+        composer.behavior();
+    }
+    
+    /**
+     * Pause is a no-op since there are no background activities or
+     * record stores that need to be closed.
+     */
+    public void pauseApp() {}
+    
+    /** Destroy must cleanup everything not handled by the garbage collector.
+     * @param unconditional indication for destroy application
+     */
+    public synchronized void destroyApp(boolean unconditional) {
+        composer.destroyApp();
+    }
+    
+    /** Method for set all aplications objects for null */    
+    public synchronized void nullPlayer() {
+        composer.nullPlayer();
+    }
+
+    /** Method for run aplication selected in list */    
+    public void run() {
+        composer.behavior();
+        composer.runSelectedAppl(index, display);
+    }
+    
+    /** Method for control commands started in celular
+     * @param c command executed
+     * @param s current display
+     */    
+    public void commandAction(Command c, Displayable s) {
+        if (c == exitCommand) {
+            destroyApp(false);
+            notifyDestroyed();
+        } else if ((s == theList && c == List.SELECT_COMMAND) || c == playCommand) {
+            synchronized (this) {
+                int i = theList.getSelectedIndex();
+                index = i;
+                (new Thread(this)).start();
+            }
+        }
+    }
+}

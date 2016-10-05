@@ -1,0 +1,142 @@
+/**
+ * Marzullo.java
+ * Created on March 19, 2003, 2:00 PM
+ */
+
+package appl.util;
+
+/**
+ * This class is to do data fusion, and is the implementation of marzullo
+ * algoritms
+ * @author  Alla
+ * @version 1.0
+ */
+public class MarzulloDataFusion {
+    /** Constant for max number of sensors */
+    private static int MAX_SENS = 5;
+    
+    /** Constant for invalid value */
+    private static int INVALID  = 6535;
+
+    /** This variable is to faulties allowed*/
+    private int faulties;
+    
+    /** This method is to check if value to be between two intervals
+     * @return if _value to be between the interval
+     * @param _values is interval for check value
+     * @param _value is value wich to be checked
+     */
+    public boolean valueIn(int _value, int _values[]){
+        if((_value >= _values[0]) && (_value <= _values[1])){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /**
+     * This method is to get low intersect between all values and one value
+     * @param _low is the low value for check intersect
+     * @param _values is the sensors values sensing, for example
+     *        _values[0][0] is the low value for sensor 0 and 
+     *        _values[0][1] is the high value for sensor 0.
+     * @param _numSensor is the number of sensor
+     * @return the number of intersects
+     */
+    private int lowIntersect(int _low, int _values[][], int _numSensor) {
+        int i, r;
+        
+        r = 0;
+        for(i = 0; i < _numSensor; i++) {
+            if(valueIn(_low, _values[i])) r++;
+        }
+
+        return r;
+    }
+
+    /**
+     * This method is to get high intersect between all values and one value
+     * @param _high is the high value for check intersect
+     * @param _values is the sensors values sensing, for example
+     *        _values[0][0] is the low value for sensor 0 and 
+     *        _values[0][1] is the high value for sensor 0.
+     * @param _numSensor is the number of sensor
+     * @return the number of intersects
+     */
+    private int highIntersect(int _high, int _values[][], int _numSensor) {
+        int i, r;
+
+        r = 0;
+        for(i = 0; i < _numSensor; i++) {
+            if(valueIn(_high, _values[i])) r++;
+        }
+        return r;
+    }
+
+    /**
+     * This method is to do data fusion using marzullo algoritms
+     * @param _values is the sensors values sensing, for example
+     *        _values[0][0] is the low value for sensor 0 and 
+     *        _values[0][1] is the high value for sensor 0.
+     * @param _numSensor is the number of sensors
+     * @return the low and high values of fusion
+     */
+    public int[] marzullo(int _values[][], int _numSensor) {
+        int i, f;
+        int low, high;
+        int lowArray[], highArray[], result[];
+
+        // Inicialize arrays variables
+        result    = new int[2];
+        lowArray  = new int[MAX_SENS];
+        highArray = new int[MAX_SENS];
+        
+        // Inicialize constantes variables
+        f    = (getFaulties() * _numSensor)/100;
+        low  = INVALID;
+        high = INVALID;
+        
+        // Loop for set low and high intersect of datas
+        for(i = 0; i < _numSensor; i++) {
+            lowArray[i]  = lowIntersect(_values[i][0], _values, _numSensor);
+            if(lowArray[i]  >= (_numSensor - f)) {
+                if (low == INVALID)
+                    low = i;
+                else
+                    low = (_values[low][0] < _values[i][0]) ? low : i;
+            }
+            
+            highArray[i] = highIntersect(_values[i][1], _values, _numSensor);
+            if(highArray[i]  >= (_numSensor - f)) {
+                if (high == INVALID)
+                    high = i;
+                else
+                    high = (_values[high][1] > _values[i][1]) ? high : i;
+            }
+        }
+        
+        // Check if sensors is valid
+        if( (low != INVALID) && (high != INVALID) ) {
+            result[0] = _values[low][0];
+            result[1] = _values[high][1];
+            return result;
+        }
+        return result;
+    }
+    
+    /**
+     * This function is to set number of erros in sensors
+     * @param _faulties is the number for faulties
+     */
+    public void setFaulties(int _faulties) {
+        faulties = _faulties;
+    }
+    
+    /**
+     * This function is to get number of erros in sensors
+     * @return the number of faulties
+     */
+    private int getFaulties() {
+        return faulties;
+    }
+}

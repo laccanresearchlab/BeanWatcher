@@ -1,0 +1,55 @@
+package appl.$dir;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import appl.util.ImageFactor;
+
+/**
+ * This classe is to digital number component static
+ * @version 0.0.0.2
+ */
+public class DigitalNumber extends ObjectCanvas {
+    /** Contants for check min and max values*/
+    private static final int MIN_VALUE = 0;
+    private static final int MAX_VALUE = 9;
+    /** Varibles for indicate x position and y position, of this ocmponent*/
+    private int px;
+    private int py;
+    /** Variable for inport value, trur indicate on or off led*/
+    private int inPort = 0;
+    
+    public DigitalNumber(Display _parentDisplay){
+        super(_parentDisplay);
+    }
+    
+    /**
+     * This method is to set in port
+     * @param _inPortValue is the value for in port, the value default is zero
+     */
+    public void setInPort(int _inPortValue){
+        if((inPort >= this.MIN_VALUE) && (inPort <= this.MAX_VALUE)){
+            inPort = _inPortValue;
+        }
+    }
+ 
+    /**
+     * Method for set position values for this component
+     * @param _x is the x value for position
+     * @param _y is the y value for position
+     */
+    public void setPosition(int _x, int _y){
+        // Set values position
+        px = _x;
+        py = _y;
+    }
+    
+    /** Method for behaviour of component */
+    public void paint(Graphics g){
+        ImageFactor imageFactor;
+        Image number;
+        
+        imageFactor = new ImageFactor();
+        number = imageFactor.getImageDisplay("/"+inPort+".png");
+        g.drawImage(number, this.px, this.py, Graphics.LEFT|Graphics.TOP);
+    }
+}

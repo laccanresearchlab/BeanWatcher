@@ -1,0 +1,70 @@
+package appl.Temperature; 
+
+import javax.microedition.lcdui.*;
+import java.util.Hashtable;
+
+/** This class is to compose components of
+ * genretaed in BeanWatcher
+ *
+ * For other application the composer to be created
+ */
+public class Composer {
+  
+    /***/
+    private Thermometer Thermometer1;
+    /***/
+    private Alarm Alarm2;
+    /***/
+    private LedStop LedStop3;
+  
+    /** Component default para object canvas*/
+    private ObjectCanvas objCanvas;
+    /** Variable for receiver datas from other components*/
+    private Hashtable inPort;
+    
+    /** Creates a new instance of Composer */
+    public Composer() {
+        this.objCanvas = new ObjectCanvas();
+
+        Thermometer1 = new Thermometer();
+        Alarm2 = new Alarm();
+        LedStop3 = new LedStop();
+
+        Thermometer1 .setConfig(0, 70);
+        Alarm2 .setConfig(20, Alarm.POSITIVE);
+        LedStop3 .setConfig();
+    }
+
+    /** 
+     * This method is to set in port value. Where, this value is a hashtable wich
+     * component name for index and value of inPort for this component
+     *
+     * @param _inPort is the values for inPort of components basics free
+     */
+    public void setInPort(Hashtable _inPort){
+        inPort = _inPort;
+    }
+     
+    /**
+     * This method is to get object canvas default for this component
+     * @return the object canvas for this component
+     */
+    public ObjectCanvas getObjectCanvas(){
+        return this.objCanvas;
+    }    
+    
+    /** Method for set behavior of composer */
+    public void behavior(){
+        Thermometer1 .setInPort((Integer)inPort.get("Thermometer"));
+        Thermometer1 .behavior();
+
+        Alarm2 .setInPort(Thermometer1.getOutPort());
+        Alarm2 .behavior();
+
+        LedStop3 .setInPort(Alarm2.getOutPort());
+        LedStop3 .behavior();
+
+
+
+    }
+}

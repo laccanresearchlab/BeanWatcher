@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.4.2" class="java.beans.XMLDecoder"> 
+ <object class="java.util.Vector"> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>BarGraph</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/bargraph.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>66</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>104</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/j2me/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>teste1BarGraph</string> 
+    </void> 
+    <void property="type"> 
+     <string>teste2</string> 
+    </void> 
+    <void property="value"> 
+     <string>teste3</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>Button</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/button.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>32</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>32</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void>
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>teste</string> 
+    </void> 
+    <void property="type"> 
+     <string>teste</string> 
+    </void> 
+    <void property="value"> 
+     <string>teste</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>DigitalNumber</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/digitalnumber.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>24</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>64</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>teste1</string> 
+    </void> 
+    <void property="type"> 
+     <string>teste2</string> 
+    </void> 
+    <void property="value"> 
+     <string>teste</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>DigitalNumberToken</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/digitaltoken.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>24</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>28</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string>
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>teste1</string> 
+    </void> 
+    <void property="type"> 
+     <string>teste2</string> 
+    </void> 
+    <void property="value"> 
+     <string>teste3</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>Graph</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/graph.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>66</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>104</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>teste1</string> 
+    </void> 
+    <void property="type"> 
+     <string>teste2</string> 
+    </void> 
+    <void property="value"> 
+     <string>teste3</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>Label</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/label.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>41</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>61</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>teste1</string> 
+    </void> 
+    <void property="type"> 
+     <string>teste2</string> 
+    </void> 
+    <void property="value"> 
+     <string>teste3</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>LedGo</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/ledgo.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>28</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>28</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>LedWait</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/ledwait.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>28</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>28</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>LedStop</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/ledstop.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>28</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>28</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>SensorNet</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/sensor_net.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>48</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>126</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>teste1</string> 
+    </void> 
+    <void property="type"> 
+     <string>teste2</string> 
+    </void> 
+    <void property="value"> 
+     <string>teste3</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>Thermometer</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/thermometer.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>99</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>32</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>VISUAL_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>minScale</string> 
+    </void> 
+    <void property="type"> 
+     <string>int</string> 
+    </void> 
+    <void property="value"> 
+     <string>0</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>maxScale</string> 
+    </void> 
+    <void property="type"> 
+     <string>int</string> 
+    </void> 
+    <void property="value"> 
+     <string>70</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.dto.ColectorDTO"> 
+    <void property="component_name"> 
+     <string>Alarm</string> 
+    </void> 
+    <void property="component_image"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/alarm.gif</string> 
+    </void> 
+    <void property="component_image_height"> 
+     <int>41</int> 
+    </void> 
+    <void property="component_image_width"> 
+     <int>61</int> 
+    </void> 
+    <void property="component_path"> 
+     <string>/Users/rlopes/Documents/workspace/bw-alla/src/repository/images/child/</string> 
+    </void> 
+    <void property="component_typeAppl"> 
+     <string>FUNCTI_COMP</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>alarmValue</string> 
+    </void> 
+    <void property="type"> 
+     <string>int</string> 
+    </void> 
+    <void property="value"> 
+     <string>20</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="add"> 
+   <object class="br.ufpi.die.jflash.property.Properties"> 
+    <void property="name"> 
+     <string>sign</string> 
+    </void> 
+    <void property="type"> 
+     <string>int</string> 
+    </void> 
+    <void property="value"> 
+     <string>Alarm.POSITIVE</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+ </object> 
+</java>

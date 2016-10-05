@@ -1,0 +1,107 @@
+/*
+ * ComunicatorComponent.java
+ *
+ * Created on March 18, 2003, 10:28 AM
+ */
+
+package appl;
+
+import java.io.*;
+import javax.microedition.io.*;
+import javax.microedition.io.Connector;
+import javax.microedition.lcdui.*;
+import appl.util.SocketFactor;
+
+/**
+ * This class represents the comunicator component for J2me application
+ * @author alla, master student in UFMG-Brazil
+ * @version 0.0.0.1
+ */
+public class Comunicator {
+    
+    /** This variable output for this component
+     *  used when component send some data [data]*/
+    private byte dataOutPort[];
+    
+    /** This variable input for this component
+     *  used when component receiver some data [data]*/
+    private byte dataInPort[];
+    
+    /** This variable is to socket comunication*/
+    SocketFactor socketFactor = new SocketFactor();
+    
+    /** Variable for check if application recieved datas */    
+    private boolean recvControl = false;
+    
+    /** Creates a new instance of ComunicatorComponent */
+    public Comunicator() {
+    }
+    
+    /** Method for set value of recvControl
+     * @param _value new value for recvControl atribut
+     */    
+    public void setRecvControl(boolean _value){
+        recvControl = _value;
+    }
+    
+    /** Method for set value of recvControl
+     * @return the value of atribute recvControl
+     */    
+    public boolean getRecvControl(){
+        return recvControl;
+    }
+    
+    /** This method is to get output for this component
+     * used for get data to be send in out port
+     * is public because this value is get from external connector
+     * @return the out port value, used for external connector
+     */
+    public byte[] getOutPort(){
+        return dataOutPort;
+    }
+    
+    /** This method is to set output for this component
+     * used for set data out port
+     * is private because this port is not visualized from external connector
+     * @param _dataOutPort is out port value for outport
+     */
+    private void setDataOutPort(byte _dataOutPort[]){
+        dataOutPort = _dataOutPort;
+    }
+    
+    /** This method is to get inport for this component
+     * used for get data in port
+     * is private because this port is not visualized from external connector
+     * @return the in port value, used only for this class
+     */
+    private byte[] getDataInPort(){
+        return dataInPort;
+    }
+    
+    /** This method is to set inport for this component
+     * used for set data in port
+     * is public because this port is visualized from external connector
+     * @param _dataInPort is in port value for inport
+     */
+    public void setInPort(byte _dataInPort[]){
+        dataInPort = _dataInPort;
+    }
+    
+    /**
+     * This method is to implements comunication behaviour,
+     * this can be changed for user
+     */
+    public void behavior() {
+        try{
+            while(true){
+                socketFactor.connectServer(4445);
+                setDataOutPort(socketFactor.receive());
+                socketFactor.closeServer();
+                setRecvControl(true);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+}
+

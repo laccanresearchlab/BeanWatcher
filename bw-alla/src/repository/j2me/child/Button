@@ -1,0 +1,87 @@
+package appl.$dir;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import appl.util.ImageFactor;
+
+/**
+ * This classe is to digital display with 4 units
+ */
+public class Button extends ObjectCanvas{
+    /** Constants for type button default*/
+    public static final String ROUND = "round";
+    public static final String SQUARE = "square";
+    public static final String SELECT_HORIZONTAL = "selecthorizontal";
+    public static final String SELECT_VERTICAL = "selectvertical";
+    public static final String SWITCH_HORIZONTAL = "switchhorizontal";
+    public static final String SWITCH_VERTICAL = "switchvertical";
+    /** Varibles for indicate x position and y position, of this ocmponent*/
+    private int px;
+    private int py;
+    /** Variable for inport value in display component*/
+    private boolean inPort = false;
+    /** Variable for inport value in display component*/
+    private boolean outPort = false;
+    /** Variable for type of led, wait(orange), go(green), stop(red)*/
+    private String type;
+    
+    /**
+     * The constructor for this class
+     */
+    public Button(Display _parentDisplay, String _type) {
+        super(_parentDisplay);
+        type = _type;
+    }
+
+    /**
+     * This method is to set in port
+     * @param _inPortValue is the value for in port
+     */
+    public void setInPort(boolean _inPortValue){
+        inPort = _inPortValue;
+    }
+    
+    /**
+     * This method is to get out port
+     * @param _outPortValue is the value for out port
+     */
+    public boolean getOutPort(){
+        return outPort;
+    }
+    
+    /**
+     * Method for set position values for this component
+     * @param _x is the x value for position
+     * @param _y is the y value for position
+     */
+    public void setPosition(int _x, int _y){
+        // Set values position
+        px = _x;
+        py = _y;
+    }
+    
+    /** Method for behaviour of component */
+    //public Image behavior(){
+    public void paint(Graphics g){
+        ImageFactor imageFactor;
+        Image button;
+        // set value for outPort
+        outPort = inPort;
+        // Paint component
+        imageFactor = new ImageFactor();
+        button = imageFactor.getImageDisplay("/b" + type + inPort + ".png");
+        g.drawImage(button, this.px, this.py, Graphics.LEFT|Graphics.TOP);
+    }
+    
+    /**
+     * This method is to key value of keyboard
+     */
+    public void keyPressed(int keyCode) {
+        switch (keyCode) {
+            default:
+                this.setInPort(!getOutPort());
+                //this.addElement(button.behavior(), ObjectCanvas.IMAGE, 10, 50);
+                this.repaint();
+        }
+    }
+}

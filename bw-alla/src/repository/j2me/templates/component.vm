@@ -1,0 +1,71 @@
+package appl.$name; 
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import javax.microedition.media.*;
+import java.util.Hashtable;
+import appl.BeanWatcher;
+
+/**
+ * This classe is to temperature component
+ */
+public class $name extends ObjectCanvas implements CommandListener{
+    /** Variable for inport value, indicate temperature value*/
+    private Hashtable inPort;
+    /** Variable for compose component*/
+    Composer composer;
+    /** Current display passed in constructor*/
+    private Display parentDisplay;
+    /** Command back in display device*/
+    private Command backCommand = new Command("Back", Command.BACK, 1);
+    
+    /**
+     * The constructor for this class
+     * @param _parentDisplay used for control display in device
+     */
+    public $name() {
+        composer      = new Composer();
+        addCommand(backCommand);
+        setCommandListener(this);
+    }
+    
+    /**
+     * Method to set parent display
+     * @param is the parent display setted
+     */
+    public void setParentDisplay(Display _parentDisplay){
+        parentDisplay = _parentDisplay;
+    }
+    
+    /**
+     * This method is to set in port
+     * @param _inPortValue is the value for in port, the value default is zero
+     */
+    public void setInPort(Hashtable _inPortValue){
+        inPort = _inPortValue;
+    }
+    
+    /** Method for paint object*/
+    public void paint(Graphics g) {
+        ObjectCanvas objCanvas;
+        
+        composer.setInPort(inPort);
+        composer.behavior();
+        
+        objCanvas = composer.getObjectCanvas();
+        objCanvas.paint(g);
+    }
+    
+    /**
+     * Method for get action from display, in thsi case only back action
+     * @param c, command used
+     * @param s, display destin for action setted
+     */
+    public void commandAction(Command c, Displayable s) {
+        if (s == this) {
+            if (c == backCommand) {
+                parentDisplay.setCurrent(BeanWatcher.getList());
+            }
+        }
+    }
+}

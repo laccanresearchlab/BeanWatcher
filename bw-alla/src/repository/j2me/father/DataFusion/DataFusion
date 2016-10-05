@@ -1,0 +1,106 @@
+package appl.DataFusion;
+
+import javax.microedition.lcdui.*;
+import appl.util.MarzulloDataFusion;
+
+/** This classe is to execute fusion in datas sensing */
+public class DataFusion{
+    
+    /** This variable output for this component [numResult][interval result],
+     * contain two elements only*/
+    private Integer outPort[];
+    
+    /** This variable input for this component [number sensor][interval sensing],
+     * interval sensing contain only two elements*/
+    private Integer inPort[][];
+    
+    /** Variable for number de datas necessary for one fusion*/
+    private int numFusionPrt;
+    
+    /** Variable for number os results generate*/
+    private int numResultPrt;
+    
+    /**
+     * The constructor creates new DateFieldDemo and initializes the GUI.
+     */
+    public DataFusion() {
+        numFusionPrt = 4;
+        numResultPrt = 4;
+    }
+    
+    /** This method is to get output for this component, is public because
+     * the component has one outport
+     * @return the data out port value
+     */
+    public Integer[] getOutPort(){
+        return outPort;
+    }
+    
+    /** This method is to set output for this component, is public because
+     * the component has one in port
+     * @param _dataOutPort is the new value for data out port
+     */
+    private void setOutPort(Integer _outPort[]){
+        outPort = _outPort;
+    }
+    
+    /** This method is to get output for this component, is public because
+     * the component has one outport
+     * @return return the data in port value
+     */
+    private Integer[][] getInPort(){
+        return inPort;
+    }
+    
+    /** This method is to set output for this component, is public because
+     * the component has one in port
+     * @param _dataInPort is the new data in port value
+     */
+    public void setInPort(Integer[][] _inPort){
+        inPort = _inPort;
+    }
+    
+    /**
+     * This method is to implements clock behaviour,
+     * this can be changed for user
+     */
+    public void behavior(){
+        
+        MarzulloDataFusion marzullo = new MarzulloDataFusion();
+        
+        marzullo.setFaulties(0);
+
+        // The first element is to number sensing data, and second is interval
+        // wich two values sensing
+        Integer values[][];
+        values = getInPort();
+
+        int inputFusion[][] = new int[numFusionPrt][2];
+        int resultFusion[] = new int[numResultPrt];
+        
+        int i = 0;
+        int control = 0;
+        while(i < numResultPrt){
+            int j = 0;
+            while(j < numFusionPrt){
+                inputFusion[j][0] = values[control][0].intValue();
+                inputFusion[j][1] = values[control][1].intValue();
+                j++;
+                control++;
+            }
+            resultFusion[i] = marzullo.marzullo(inputFusion, numFusionPrt)[1];
+            i++;
+        }
+        
+        setOutPort(castInteger(resultFusion));
+    }
+    
+    public Integer[] castInteger(int _value[]){
+        Integer integer[];
+        integer = new Integer[_value.length];
+        for(int i = 0; i < _value.length; i++){
+                integer[i] = new Integer(_value[i]);
+        }
+        return integer;
+    }
+}

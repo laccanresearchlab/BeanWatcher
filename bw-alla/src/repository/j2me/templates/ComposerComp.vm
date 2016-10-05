@@ -1,0 +1,65 @@
+package appl.$applName; 
+
+import javax.microedition.lcdui.*;
+import java.util.Hashtable;
+
+/** This class is to compose components of
+ * genretaed in BeanWatcher
+ *
+ * For other application the composer to be created
+ */
+public class Composer {
+  
+#foreach( $name in $listAllComponent )
+    $name.getDescription()
+    private $name.getType() $name.getName();
+#end
+  
+    /** Component default para object canvas*/
+    private ObjectCanvas objCanvas;
+    /** Variable for receiver datas from other components*/
+    private Hashtable inPort;
+    
+    /** Creates a new instance of Composer */
+    public Composer() {
+        this.objCanvas = new ObjectCanvas();
+
+#foreach( $name in $listAllComponent )
+        $name.getName() = new $name.getType()();
+#end
+
+#foreach( $name in $listAllComponent )
+$name.getConfigCode()
+#end
+    }
+
+    /** 
+     * This method is to set in port value. Where, this value is a hashtable wich
+     * component name for index and value of inPort for this component
+     *
+     * @param _inPort is the values for inPort of components basics free
+     */
+    public void setInPort(Hashtable _inPort){
+        inPort = _inPort;
+    }
+     
+    /**
+     * This method is to get object canvas default for this component
+     * @return the object canvas for this component
+     */
+    public ObjectCanvas getObjectCanvas(){
+        return this.objCanvas;
+    }    
+    
+    /** Method for set behavior of composer */
+    public void behavior(){
+#foreach( $name in $listAllComponent )
+$name.getDependenceCode()
+#end
+
+#foreach( $name in $listApplComponent )
+objCanvas.addElement($name.getName(), $name.getPosX(), $name.getPosY());
+#end
+
+    }
+}

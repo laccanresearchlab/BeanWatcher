@@ -1,0 +1,131 @@
+/*
+ * SocketFactor.java
+ *
+ * Created on March 17, 2003, 3:54 PM
+ */
+
+package appl.util;
+
+import java.io.*;
+import javax.microedition.io.*;
+import javax.microedition.io.Connector;
+
+/**
+ * This class implements the communication channel that will be used by the
+ * stub for Remote Method Invocation in the J2ME execution environment.
+ * @author  alla
+ */
+public class SocketFactor {
+    
+    /** Constante for size off buffer send or receiver */
+    private static final int BUFFER_SIZE = 128;
+    
+    /** Variables for output data in comunnication*/
+    private static OutputStream out      = null;
+    
+    /** Variable for input data in comunnication*/
+    private static InputStream in        = null;
+    
+    /** Variable for habilite socket connection*/
+    private static SocketConnection sc   = null;
+    
+    /** Variable for habilite socket server connection */    
+    private static ServerSocketConnection scn = null;
+    
+    /** Makes a socket connection
+     * @param host The IP address of the target machine. Eg.:
+     * turmalina.dcc.ufmg.br
+     * @param port The port number on the target host.
+     */
+    public void connectClient(String host, int port) {
+        try {
+            sc = (SocketConnection)Connector.open("socket://" + host + ":" + port);
+            sc.setSocketOption(SocketConnection.LINGER, 5);
+            in  = sc.openInputStream();
+            out = sc.openOutputStream();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Makes a socket connection
+     * @param port The port number on the target host.
+     */
+    public void connectServer(int port){
+        try {
+            scn = (ServerSocketConnection)Connector.open("socket://:"+port);
+            // Wait for a connection.
+            sc = (SocketConnection)scn.acceptAndOpen();
+            //Set application specific hints on the socket.
+            sc.setSocketOption(SocketConnection.DELAY, 0);
+            sc.setSocketOption(SocketConnection.LINGER, 0);
+            sc.setSocketOption(SocketConnection.KEEPALIVE, 0);
+            sc.setSocketOption(SocketConnection.RCVBUF, 128);
+            sc.setSocketOption(SocketConnection.SNDBUF, 128);
+            
+            in  = sc.openInputStream();
+            out = sc.openOutputStream();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /** Causes the specified sequence of bytes to be written in the channel.
+     * @param b the message to be sent.
+     * @throws IOException Throws exception in send error
+     */
+    public void send(byte[] b) throws IOException {
+        if(b != null) {
+            for(int i = 0; i < b.length; i++)
+                out.write(b[i]);
+            out.write('\n');
+            out.flush();
+        }
+    }
+    
+    /** This method is to receive data from socket openned
+     * @return the bytes receiver in comunication
+     * @throws IOException Throws exception in receiver error
+     */
+    public byte[] receive() throws IOException {
+        byte buf[] = new byte[BUFFER_SIZE];
+        //byte resp[];
+        int i;
+        
+        //resp = new byte[5];
+        
+        try{
+            i = in.read(buf);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        
+        return buf;
+    }
+    
+    /** Close the attributes used in comunication
+     * @throws IOException Throws exception in close server variables error
+     */
+    public void closeServer() throws IOException {
+        if(in != null)
+            in.close();
+        if(out != null)
+            out.close();
+        if(sc != null)
+            sc.close();
+        if(scn != null)
+            scn.close();
+        
+        System.gc();
+    }
+    
+    /** Close the attributes used in comunication
+     * @throws IOException Throws exception in close client variables error
+     */
+    public void closeClient() throws IOException {
+        in.close();
+        out.close();
+        sc.close();
+    }
+}

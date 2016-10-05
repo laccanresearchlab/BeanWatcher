@@ -1,0 +1,38 @@
+Tue Aug 02 11:58:57 BRT 2016  [debug] AvalonLogSystem initialized using logfile '/Users/rlopes/Documents/workspace/bw-alla/src/processing/velocity_codefactor.log'
+Tue Aug 02 11:58:57 BRT 2016   [info] ************************************************************** 
+Tue Aug 02 11:58:57 BRT 2016   [info] Starting Jakarta Velocity v1.3.1
+Tue Aug 02 11:58:57 BRT 2016   [info] RuntimeInstance initializing.
+Tue Aug 02 11:58:57 BRT 2016   [info] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+Tue Aug 02 11:58:57 BRT 2016   [info] Trying to use logger class org.apache.velocity.runtime.log.AvalonLogSystem
+Tue Aug 02 11:58:57 BRT 2016   [info] Using logger class org.apache.velocity.runtime.log.AvalonLogSystem
+Tue Aug 02 11:58:57 BRT 2016   [info] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+Tue Aug 02 11:58:57 BRT 2016   [info] Resource Loader Instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+Tue Aug 02 11:58:57 BRT 2016   [info] FileResourceLoader : initialization starting.
+Tue Aug 02 11:58:57 BRT 2016   [info] FileResourceLoader : adding path '.'
+Tue Aug 02 11:58:57 BRT 2016   [info] FileResourceLoader : initialization complete.
+Tue Aug 02 11:58:57 BRT 2016   [info] ResourceCache : initialized. (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
+Tue Aug 02 11:58:57 BRT 2016   [info] Default ResourceManager initialization complete.
+Tue Aug 02 11:58:57 BRT 2016   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+Tue Aug 02 11:58:57 BRT 2016   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+Tue Aug 02 11:58:57 BRT 2016   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+Tue Aug 02 11:58:57 BRT 2016   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+Tue Aug 02 11:58:57 BRT 2016   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+Tue Aug 02 11:58:57 BRT 2016   [info] Created: 20 parsers.
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocimacro : initialization starting.
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocimacro : adding VMs from VM library template : VM_global_library.vm
+Tue Aug 02 11:58:57 BRT 2016  [error] ResourceManager : unable to find resource 'VM_global_library.vm' in any resource loader.
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocimacro : error using  VM library template VM_global_library.vm : org.apache.velocity.exception.ResourceNotFoundException: Unable to find resource 'VM_global_library.vm'
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocimacro :  VM library template macro registration complete.
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocimacro : allowInline = true : VMs can be defined inline in templates
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocimacro : messages on  : VM system will output logging messages
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocimacro : autoload off  : VM system will not automatically reload global library macros
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocimacro : initialization complete.
+Tue Aug 02 11:58:57 BRT 2016   [info] Velocity successfully started.
+Tue Aug 02 11:58:57 BRT 2016  [error] ResourceManager : unable to find resource '/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//templates/dependenceCode.vm' in any resource loader.
+Tue Aug 02 11:58:57 BRT 2016  [error] ResourceManager : unable to find resource '/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//templates/configCode.vm' in any resource loader.
+Tue Aug 02 11:58:57 BRT 2016  [error] ResourceManager : unable to find resource '/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//templates/ComposerComp.vm' in any resource loader.
+Tue Aug 02 11:58:57 BRT 2016  [error] ResourceManager : unable to find resource '/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//templates/component.vm' in any resource loader.
+Tue Aug 02 11:58:57 BRT 2016  [error] ResourceManager : unable to find resource '/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//child/BarGraph' in any resource loader.
+Tue Aug 02 11:58:57 BRT 2016  [error] ResourceManager : unable to find resource '/Users/rlopes/Documents/workspace/bw-alla/src//repository/j2me//child/ObjectCanvas' in any resource loader.

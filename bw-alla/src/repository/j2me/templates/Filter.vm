@@ -1,0 +1,130 @@
+/*
+ * Filter.java
+ *
+ * Created on March 18, 2003, 10:28 AM
+ */
+
+package appl;
+
+import java.io.*;
+import javax.microedition.io.*;
+import javax.microedition.io.Connector;
+import javax.microedition.lcdui.*;
+
+/** Class to provide filter in datas received of sensors
+ * This application use communicator, datafusion and
+ * same components of BeanWather
+ *
+ * For other application the filter to be created
+ */
+public class Filter {
+    
+    /** Out port, for out interface of component
+      [number of appl][number of sensors][interval sensing]*/
+    private Integer[][] outPort;
+    
+    /** In port of component [datas]*/
+    private byte[] inPort;
+    
+    /** Variable for check if receiver datas from the net */
+    private boolean filterControl;
+    
+    /** Variable for number of application executing */
+    private int numberAppl;
+
+    /** Variable for index the current application*/
+    private int indexAppl;
+
+    /** Constructor for filter class
+     * @param _numberAppl indicate number of aplications executing
+     */
+    public Filter(int _numberAppl) {
+        numberAppl    = _numberAppl;
+        filterControl = false;
+        indexAppl = -1;
+    }
+    
+    /** Set value for in index application controller
+     * @param _indexApl value for new index
+     */
+    private void setIndexAppl(int _indexAppl){
+        indexAppl = _indexAppl;
+    }
+    
+    /** Set value for in index application controller
+     * @param _indexApl value for new index
+     */
+    public int getIndexAppl(){
+        return indexAppl;
+    }
+    
+    /** Set value for in port
+     * @param _sensingDataInPort value received of inport
+     */
+    public void setInPort(byte[] _inPort){
+        inPort = _inPort;
+    }
+    
+    /** Get value from in port
+     * @return the value of inport
+     */
+    private byte[] getInPort(){
+        return inPort;
+    }
+    
+    /** Set value for out port
+     * @param _outPort indicate the data disponible in outport
+     */
+    private void setOutPort(Integer[][] _outPort){
+        outPort = _outPort;
+    }
+    
+    /** Get value from out port
+     * @return the value of outport
+     */
+    public Integer[][] getOutPort(){
+        return outPort;
+    }
+    
+    /** Set value for filter controll
+     * @param _value indicate the value fro filter control
+     */
+    public void setFilterControl(boolean _value){
+        filterControl = _value;
+    }
+    
+    /** Method for component's behavior */
+    public void behavior() {
+        Integer intOutValues[][];
+        byte    inValues[] = new byte[33];
+        
+        try{
+            if(filterControl){
+                inValues = getInPort();
+                indexAppl = inValues[0];
+                
+                intOutValues = new Integer[16][2];
+                int i = 0;
+                int count = 1;
+                while(i < 16){
+                    intOutValues[i][0] = new Integer(inValues[count]);
+                    count++;
+                    intOutValues[i][1] = new Integer(inValues[count]);
+                    count++;
+                    i++;
+                }
+                switch(indexAppl){
+#foreach( $name in $listApplComponent )
+                    case $_velocityCount:{
+                        setOutPort(intOutValues);
+                        break;
+                    }
+#end
+                }
+                setFilterControl(false);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+}

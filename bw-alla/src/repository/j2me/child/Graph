@@ -1,0 +1,138 @@
+package appl.$dir;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import appl.util.ImageFactor;
+
+/**
+ * This classe is to Graph component dinamic
+ * The dinamic class extends from ObjectCanvas, hasn't two dinamic class
+ * in the same project.
+ * @by alla in 04/11/2003
+ * @version 0.0.0.1
+ */
+public class Graph extends ObjectCanvas{
+    /** Constant for max interval for x axes*/
+    private static final int MAX_DX = 100;
+    /** Varibles for indicate x position and y position, of this ocmponent*/
+    private int px;
+    private int py;
+    /** Variable for unit*/
+    private String unit;
+    /** Variable for inport value*/
+    private int inPort;
+    /** Variable for min and max scales in axe X*/
+    private int minScaleX;
+    private int maxScaleX;
+    /** Variable for min and max scales in axe Y*/
+    private int minScaleY;
+    private int maxScaleY;
+    /** Variables for state history for x values*/
+    private int[] valuesXHistory = new int[MAX_DX+1];
+    private int count;
+    /** Variable for controll continue display*/
+    private int restart;
+    
+    /**
+     * The constructor for this class
+     * @param _parentDisplay used for control display in device
+     * @param _minScale is the min value for temperature scale
+     * @param _maxScale is the max value for temperature scale
+     * @param _px is the x position of this component in display
+     * @param _py is the y position of this component in display
+     */
+    public Graph(Display _parentDisplay, int _minScaleY, int _maxScaleY, String _unit) {
+        super(_parentDisplay);
+        // Set values for min and max scale in axes X
+        minScaleX = 0;
+        maxScaleX = this.MAX_DX;
+        minScaleY = _minScaleY;
+        maxScaleY = _maxScaleY;
+        // Set values position
+        px = 0;
+        py = 0;
+        // Default values for atributtes
+        this.inPort = 0;
+        this.count = 0;
+        this.valuesXHistory[this.count] = inPort;
+        this.restart = 0;
+        this.unit = _unit;
+    }
+    
+    /**
+     *
+     */
+    public void setPosition(int _x, int _y){
+        // Set values position
+        px = _x;
+        py = _y;
+    }
+    
+    /**
+     * This method is to set in port
+     * @param _inPortValue is the value for in port, the value default is zero
+     */
+    public void setInPort(int _inPortValue){
+        int value;
+        // Set x value;
+        if(this.count < this.MAX_DX){
+            value = _inPortValue;
+            this.count++;
+        } else { // change scale
+            // restart variables from scale
+            valuesXHistory = new int[this.MAX_DX+1];
+            this.count = 0;
+            minScaleX  = maxScaleX;
+            maxScaleX  = maxScaleX + this.MAX_DX;
+            restart    = maxScaleX;
+            value      = restart;
+        }
+        // Set y value;
+        if(_inPortValue >= minScaleY){
+            if(_inPortValue <= maxScaleY){
+                value = _inPortValue;
+            } else {
+                value = maxScaleY;
+            }
+        } else {
+            value = minScaleY;
+        }
+        // Set value for inPort
+        this.inPort = value;
+        this.valuesXHistory[count] = value;
+    }
+    
+    /** Method for paint object*/
+    public void paint(Graphics g) {
+        //axes point for plot
+        int x;
+        int y;
+        //last axes point for plot
+        int lastX;
+        int lastY;
+        //displacement for paint line
+        int dispX = this.px + 20;
+        int dispY = this.py + 50;
+
+        // Paint graph, axes scale and label
+        g.setColor(0x000000);
+        g.drawString(""+this.minScaleY, this.px, this.py + 35, Graphics.LEFT|Graphics.TOP);
+        g.drawString(""+this.maxScaleY, this.px, this.py, Graphics.LEFT|Graphics.TOP);
+        g.drawString(""+this.minScaleX, this.px + 20, this.py + 50, Graphics.LEFT|Graphics.TOP);
+        g.drawString("Time", this.px + 60, this.py + 50, Graphics.LEFT|Graphics.TOP);
+        g.drawString(""+this.maxScaleX, this.px + 110, this.py + 50, Graphics.LEFT|Graphics.TOP);
+        // Show value received
+        g.drawString(inPort+" "+this.unit, dispX + 102, this.py, Graphics.LEFT|Graphics.TOP);
+        // Paint 
+        g.fillRect(px + 20, py, 100, 51);
+        g.setColor(0x00FF00);
+        
+        for(int i = 1; i < this.count; i++){
+            x = i;
+            y = valuesXHistory[i];
+            lastX = i-1;
+            lastY = valuesXHistory[i-1];
+            g.drawLine( (lastX+dispX), (dispY-lastY), x+dispX, dispY-y);
+        }
+    }
+}

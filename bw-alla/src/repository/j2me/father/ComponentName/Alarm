@@ -1,0 +1,73 @@
+package appl.ComponentName;
+
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import appl.util.ImageFactor;
+
+/**
+ * This classe is to led component static
+ */
+public class Alarm {
+    /**Contante for signs of alarm variable*/
+    public static final int POSITIVE = 1;
+    public static final int NEGATIVE = -1;
+    /** Variable for inport value*/
+    private Integer inPort = new Integer(Integer.MIN_VALUE);
+    /** Variable for outport value*/
+    private Boolean outPort = new Boolean(false);
+    /** Variable for turn on alarm*/
+    private int config = Integer.MAX_VALUE;
+    /** Variable for signs*/
+    private int sign = this.POSITIVE;
+    
+    /**
+     * This method is to set in port
+     * @param _inPortValue is the value for in port, the value default is zero
+     */
+    public void setInPort(Integer _inPortValue){
+        inPort = _inPortValue;
+    }
+    
+    /**
+     * This method is to set config
+     * @param _config is the value for config
+     */
+    public void setConfig(int _config, int _signal){
+        config = _config;
+    }
+    
+    /**
+     * This method is to set ioutport
+     * @param _outPortValue is the value for out port
+     */
+    private void setOutPort(Boolean _outPort){
+        outPort = _outPort;
+    }
+    
+    /**
+     * This method is to get outport
+     * @return outPort value
+     */
+    public Boolean getOutPort(){
+        return outPort;
+    }
+    
+    /**
+     * This method is to behavior of this component
+     */
+    public void behavior(){
+        if(sign == this.POSITIVE){
+            if(inPort.intValue() > config){
+                setOutPort(new Boolean(true));
+            } else {
+                setOutPort(new Boolean(false));
+            }
+        } else {
+            if(inPort.intValue() < config){
+                setOutPort(new Boolean(true));
+            } else {
+                setOutPort(new Boolean(false));
+            }
+        }
+    }
+}

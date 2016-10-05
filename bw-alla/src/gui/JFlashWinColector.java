@@ -1,0 +1,466 @@
+/*
+ * JFlashWinColector.java
+ *
+ * Created on 28 de Abril de 2003, 20:06
+ */
+
+package gui;
+import br.ufpi.die.jflash.dto.*;
+import br.ufpi.die.jflash.dmo.*;
+import util.*;
+import setings.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.border.*;
+import java.io.*;
+import javax.swing.filechooser.*;
+import java.util.*;
+/**
+ *
+ * @author  Lincoln Souza Rocha
+ */
+@SuppressWarnings("unused")
+public class JFlashWinColector extends JPanel {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel container;
+    private JPanel principalPane;
+    private JPanel northPane;
+    private JPanel southPane;
+    private JPanel buttonsPane;
+    private JPanel authorPane;
+    private JPanel componentPane;
+    private JPanel imgPortsPane;
+    private JPanel portsPane;
+    private JPanel dataPortsPane;
+    private JPanel buttonsPortsPane;
+    private JPanel portNamePane;
+    private JPanel typePane;
+    private JPanel dimensionPane;
+    private JPanel functionPane;
+	private JPanel portsNamePane;
+    private JPanel load_cptPane;
+    
+    private ManagerSetings ms;
+    private ColectorDMO cdmo;
+    
+    private JButton finishButton;
+    private JButton addPortButton;
+    private JButton delPortButton;
+    private JButton editPortButton;
+    private JButton load_cptButton;
+    
+    private JLabel authorLabel;
+    private JLabel componentLabel;
+	private JLabel pathLabel;
+    private JLabel portNameJLabel;
+    private JLabel typeJLabel;
+    private JLabel dimensionJLabel;
+    private JLabel functionJLabel;
+    private JLabel load_cptTxt;
+    
+    private Vector<JLabel> portsName = new Vector<JLabel>();
+    public int count=0;
+    public boolean in,out,inout;
+    
+    private JTextField authorJTFielde;
+    private JTextField componentJTFielde;
+    private JTextField portNameJTFielde;
+    private JTextField load_cptField;
+    
+    private JListImage jlimg;
+    
+    private String cpt_store;
+    
+    private JFileChooser file_cpt;
+    
+    private Toolkit tk;
+    private Image img;
+    
+    
+    private JComboBox<String> typeCBox;
+    private JComboBox<String> dimensionCBox;
+    private JComboBox<String> functionCBox;    
+    
+    
+    
+    /** Creates a new instance of JFlashWinColector */
+    public JFlashWinColector(){        
+        tk = Toolkit.getDefaultToolkit();        
+        img = tk.getImage(getClass().getResource("/img/logojf.jpg"));           
+        initComponents();
+    }
+    private void initComponents() {
+        
+        in = out = inout = true;
+        ms = new ManagerSetings();
+        cdmo = new ColectorDMO();
+        portsName = new Vector<JLabel>();
+        container = new JPanel(new BorderLayout());
+        portsNamePane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        principalPane = new JPanel(new BorderLayout());
+        northPane = new JPanel(new GridLayout(3,1));
+        southPane = new JPanel(new GridLayout(1,2));
+        buttonsPane = new JPanel();
+        authorPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        componentPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        portNamePane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        typePane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        dimensionPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        functionPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        load_cptPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        
+        imgPortsPane = new JPanel(new BorderLayout());
+        portsPane = new JPanel(new BorderLayout());
+        dataPortsPane = new JPanel(new GridLayout(4,1));
+        buttonsPortsPane = new JPanel();
+        
+        
+        
+        typeCBox = new  JComboBox<String>();
+        dimensionCBox = new  JComboBox<String>();
+        functionCBox = new  JComboBox<String>();
+        
+        finishButton = new JButton("Create Component");
+        addPortButton = new JButton("Add Port");
+        addPortButton.setIcon(new ImageIcon(getClass().getResource("../img/add.gif")));
+        delPortButton = new JButton("Del Port");
+        delPortButton.setIcon(new ImageIcon(getClass().getResource("../img/del.gif")));
+        editPortButton = new JButton("Edit Port");
+        editPortButton.setIcon(new ImageIcon(getClass().getResource("../img/edit.gif")));
+        
+        
+        authorLabel = new  JLabel("Author Name: ");
+        componentLabel = new    JLabel("Component Name: ");
+        pathLabel = new    JLabel("Arquive Path: ");
+        portNameJLabel = new    JLabel("Port Name: ");
+        typeJLabel = new    JLabel("Port Type: ");
+        dimensionJLabel = new    JLabel("Port Dimension: ");
+        functionJLabel = new    JLabel("Port Function: ");
+        load_cptTxt = new JLabel("Directory for new coponent: ");
+        
+        
+        authorJTFielde = new  JTextField(25);
+        componentJTFielde = new JTextField(23);
+        portNameJTFielde = new JTextField(15);
+        load_cptField = new JTextField(20);
+        
+       file_cpt = new JFileChooser();
+       this.file_cpt.setCurrentDirectory(new File(ms.getPath_Base()+File.separator+"repository"));
+       
+       load_cptButton = new JButton();
+       load_cptButton.setIcon(new ImageIcon(getClass().getResource("../img/open.gif")));
+       
+        load_cptButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                load_cptButton(evt);
+            }
+        });       
+        
+        finishButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                finishButton(evt);
+            }
+        });
+        
+        finishButton.setIcon(new ImageIcon(getClass().getResource("../img/create.gif")));
+        buttonsPane.add(finishButton);
+        
+        buttonsPane.setBorder(new EtchedBorder());
+        
+        principalPane.setBorder(new EtchedBorder());
+        
+        authorPane.add(authorLabel);
+        authorPane.add(authorJTFielde);
+        northPane.add(authorPane);
+        
+        
+        
+        componentPane.add(componentLabel);
+        componentPane.add(componentJTFielde);
+        northPane.add(componentPane);
+        
+       load_cptPane.add(load_cptTxt);       
+       load_cptField.setEditable(false);       
+       cpt_store = ms.getPath_Base()+File.separator+"repository"+File.separator+"j2me";
+       load_cptField.setText(cpt_store);
+       load_cptPane.add(load_cptField);       
+       load_cptPane.add(load_cptButton);
+       northPane.add(load_cptPane);        
+        
+        portNamePane.add(portNameJLabel);
+        portNamePane.add(portNameJTFielde);
+        dataPortsPane.add(portNamePane);
+        
+        
+        typeCBox.setEditable(false);
+        typeCBox.setEnabled(true);
+        typeCBox.setPreferredSize(new Dimension(100,22));
+        
+        typeCBox.addItem("BOOLEAN");
+        typeCBox.addItem("FLOAT");
+        typeCBox.addItem("INTEGER");
+        typeCBox.addItem("REAL");
+        typeCBox.addItem("STRING");
+        
+        
+        typePane.add(typeJLabel);
+        typePane.add(typeCBox);
+        dataPortsPane.add(typePane);
+        
+        dimensionCBox.setEditable(false);
+        dimensionCBox.setEnabled(true);
+        dimensionCBox.setPreferredSize(new Dimension(70,22));
+        dimensionCBox.addItem("1D");
+        dimensionCBox.addItem("2D");
+        
+        dimensionPane.add(dimensionJLabel);
+        dimensionPane.add(dimensionCBox);
+        dataPortsPane.add(dimensionPane);
+        
+        
+        functionCBox.setEditable(false);
+        functionCBox.setEnabled(true);
+        functionCBox.setPreferredSize(new Dimension(130,22));
+        functionCBox.addItem("INPUT");
+        functionCBox.addItem("OUTPUT");
+        functionCBox.addItem("INOUTPUT");
+        
+        
+        functionPane.add(functionJLabel);
+        functionPane.add(functionCBox);
+        dataPortsPane.add(functionPane);
+        
+        northPane.setBorder(new EtchedBorder());
+        
+        southPane.setBorder(new EtchedBorder());
+        
+        imgPortsPane.setBorder(new LineBorder(Color.BLACK));
+        buttonsPortsPane.setBorder(new EtchedBorder());
+        portsPane.setBorder(new LineBorder(Color.BLACK));
+        
+        southPane.add(imgPortsPane);
+        portsPane.add(dataPortsPane,BorderLayout.CENTER);
+        
+        addPortButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                addPortButton(evt);
+            }
+        });
+        
+        buttonsPortsPane.add(addPortButton);
+        
+        delPortButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                delPortButton(evt);
+            }
+        });
+        delPortButton.setEnabled(false);
+        buttonsPortsPane.add(delPortButton);
+        
+        editPortButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                editPortButton(evt);
+            }
+        });
+        editPortButton.setEnabled(false);                     
+        buttonsPortsPane.add(editPortButton);
+        
+        portsPane.add(buttonsPortsPane,BorderLayout.SOUTH);
+        southPane.add(portsPane);        
+        
+        jlimg = new JListImage();              
+
+		JList<Object> j = new JList<Object>();
+        MouseListener mouseListener = new MouseAdapter() {
+        public void mouseClicked(MouseEvent e) {
+           if (e.getClickCount() == 1) {
+             editPortButton.setEnabled(true);                     
+             delPortButton.setEnabled(true);
+             StringUtil str = new StringUtil();
+             String[] port = new String[str.getNunSubstring(" ",((JLabel)jlimg.getSelectedValue()).getText())]; 
+             port = str.getStrArray(" ",((JLabel)jlimg.getSelectedValue()).getText()); 
+             portNameJTFielde.setText(port[1]);         
+             functionCBox.setSelectedItem(port[0]);
+             typeCBox.setSelectedItem(port[2]);
+             dimensionCBox.setSelectedItem(port[3]);
+           } 
+          }
+        };
+        jlimg.addMouseListener(mouseListener);
+        imgPortsPane.add(jlimg, BorderLayout.CENTER);
+        principalPane.add(northPane,BorderLayout.NORTH);
+        principalPane.add(southPane,BorderLayout.CENTER);
+        
+        container.add(principalPane,BorderLayout.CENTER);
+        container.add(buttonsPane,BorderLayout.SOUTH);
+        this.add(container,BorderLayout.CENTER);               
+               
+    }
+    
+
+	private void exitJFlash(WindowEvent evt) {
+        //this.dispose();
+    }
+    
+    
+    
+    
+	private void exitButton(ActionEvent evt){
+        //this.dispose();
+    }
+    
+    
+    private void addPortButton(ActionEvent evt){
+        boolean can_add_port = true;        
+        if(portNameJTFielde.getText().equals("")){
+            
+            JOptionPane.showMessageDialog(new JFrame(),"The port name is null!","Exception",JOptionPane.WARNING_MESSAGE);
+            portNameJTFielde.setFocusable(true);
+            
+            
+        }else if(portNameJTFielde.getText().indexOf(" ")>=0){
+            
+            JOptionPane.showMessageDialog(new JFrame(),"The port name is not unique!","Exception",JOptionPane.WARNING_MESSAGE);
+            portNameJTFielde.setFocusable(true);
+            
+        }else{
+            String  port_name,port_function;
+            int port_format = 0;
+            int i;
+            port_name = portNameJTFielde.getText();
+            port_function = (String)functionCBox.getSelectedItem();
+            if(portsName.size()>0)
+            for(i=0 ; i < portsName.size(); i++)                
+                if((((JLabel)portsName.get(i)).getText().indexOf(port_name)!=-1)
+                   && (((JLabel)portsName.get(i)).getText().indexOf(port_function)!=-1) ){
+                      can_add_port = false;
+                       break;
+                }                
+            if(can_add_port){
+                if(((String)functionCBox.getSelectedItem()).equals("INPUT")){
+                    port_format = 0;
+                }else if(((String)functionCBox.getSelectedItem()).equals("OUTPUT")){
+                    port_format = 1;
+                }else if(((String)functionCBox.getSelectedItem()).equals("INOUTPUT")){
+                    port_format = 2;
+                }
+                JLabel lb = new JLabel();
+                lb.setIcon(new ImageIcon(this.getClass().getResource("../img/blue.gif")));
+                lb.setText((String)functionCBox.getSelectedItem() +" "+portNameJTFielde.getText()+ " "+(String)typeCBox.getSelectedItem()+" "+(String)dimensionCBox.getSelectedItem()+" ");
+                lb.setHorizontalAlignment(JLabel.LEFT);                                
+                portsName.addElement(lb);                
+                jlimg.setListData(portsName);
+                jlimg.repaint(0,0,300,300);                                
+                cdmo.addPort(port_format,(String)typeCBox.getSelectedItem(),portNameJTFielde.getText(),(String)dimensionCBox.getSelectedItem());
+                portNameJTFielde.setText("");
+                editPortButton.setEnabled(false);                     
+                delPortButton.setEnabled(false);
+
+            }else{
+                JOptionPane.showMessageDialog(new JFrame(),"The port "+ port_name +" already exists in the component!","Information",JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }
+
+    private void delPortButton(ActionEvent evt){        
+        JLabel lb = (JLabel)jlimg.getSelectedValue();
+        portsName.removeElement((JLabel)lb);
+        jlimg.setListData(portsName);
+        portNameJTFielde.setText("");
+        jlimg.repaint(0,0,300,300);                                        
+        editPortButton.setEnabled(false);                     
+        delPortButton.setEnabled(false);
+        
+        
+    }
+    
+    private void editPortButton(ActionEvent evt){        
+        boolean can_add_port = true;        
+        if(portNameJTFielde.getText().equals("")){
+            
+            JOptionPane.showMessageDialog(new JFrame(),"The port name is null!","Exception",JOptionPane.WARNING_MESSAGE);
+            portNameJTFielde.setFocusable(true);
+            
+            
+        }else if(portNameJTFielde.getText().indexOf(" ")>=0){
+            
+            JOptionPane.showMessageDialog(new JFrame(),"The port name is not unique!","Exception",JOptionPane.WARNING_MESSAGE);
+            portNameJTFielde.setFocusable(true);
+            
+        }else{
+            String  port_name,port_function;
+
+			int port_format = 0;
+            int i;
+            port_name = portNameJTFielde.getText();
+            port_function = (String)functionCBox.getSelectedItem();
+            if(portsName.size()>0)
+            for(i=0 ; i < portsName.size(); i++)                
+                if((((JLabel)portsName.get(i)).getText().indexOf(port_name)!=-1)
+                   && (((JLabel)portsName.get(i)).getText().indexOf(port_function)!=-1) && (jlimg.getSelectedIndex()!=i) ){
+                      can_add_port = false;
+                       break;
+                }                
+            if(can_add_port){
+                if(((String)functionCBox.getSelectedItem()).equals("INPUT")){
+                    port_format = 0;
+                }else if(((String)functionCBox.getSelectedItem()).equals("OUTPUT")){
+                    port_format = 1;
+                }else if(((String)functionCBox.getSelectedItem()).equals("INOUTPUT")){
+                    port_format = 2;
+                }
+                JLabel lb = new JLabel();
+                lb.setIcon(new ImageIcon(this.getClass().getResource("../img/blue.gif")));
+                lb.setText((String)functionCBox.getSelectedItem() +" "+portNameJTFielde.getText()+" "+(String)typeCBox.getSelectedItem()+" "+(String)dimensionCBox.getSelectedItem()+" ");
+                lb.setHorizontalAlignment(JLabel.LEFT);                                
+                portsName.setElementAt((JLabel)lb,jlimg.getSelectedIndex());                
+                jlimg.setListData(portsName);
+                jlimg.repaint(0,0,300,300);                                                
+                portNameJTFielde.setText("");
+                editPortButton.setEnabled(false);                     
+                delPortButton.setEnabled(false);
+            }else{
+                JOptionPane.showMessageDialog(new JFrame(),"The port "+ port_name +" already exists in the component!","Information",JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }
+    
+    
+    private void finishButton(ActionEvent evt){
+        
+        try{
+            if(authorJTFielde.getText().equals("")){
+                JOptionPane.showMessageDialog(new JFrame(),"The author name is null!","Exception",JOptionPane.WARNING_MESSAGE);
+                authorJTFielde.setFocusable(true);
+            }else if(componentJTFielde.getText().equals("")){
+                JOptionPane.showMessageDialog(new JFrame(),"The component name is null!","Exception",JOptionPane.WARNING_MESSAGE);
+                authorJTFielde.setFocusable(true);
+            }else if(componentJTFielde.getText().indexOf(" ") >= 0){
+                JOptionPane.showMessageDialog(new JFrame(),"The component name is not unique!","Exception",JOptionPane.WARNING_MESSAGE);
+                authorJTFielde.setFocusable(true);
+            }else{              
+                cdmo.newComponent("j2me",authorJTFielde.getText(),componentJTFielde.getText(),load_cptField.getText(),ms.getPath_Base()+File.separator+"data_store"+File.separator+"data_store.xml");                
+                JOptionPane.showMessageDialog(new JFrame(),"The new component created, successful!","Confirmation",JOptionPane.INFORMATION_MESSAGE);                
+            }
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(new JFrame(),"Can't create a new component!","Exception",JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }
+    
+    private void load_cptButton(ActionEvent evt){       
+       JFrame frame = new JFrame();
+       frame.setIconImage(img);
+       //this.file_cpt
+       this.file_cpt.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+       int retval = this.file_cpt.showDialog(frame,"Select Component Directory");       
+       if(retval != JFileChooser.CANCEL_OPTION)                  
+            load_cptField.setText(file_cpt.getSelectedFile().getAbsolutePath());       
+       
+       
+   }    
+}

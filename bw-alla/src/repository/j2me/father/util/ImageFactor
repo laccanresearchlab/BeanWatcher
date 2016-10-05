@@ -1,0 +1,130 @@
+/**
+ * @ImageFactor.java   03/01/22
+ *
+ * Class to provide image using in MMAPI
+ */
+
+package appl.util;
+
+import javax.microedition.lcdui.*;
+import java.io.IOException;
+
+/**
+ * @by alla in 12/08/2003
+ * @version 0.0.0.1
+ */
+
+/**
+ * Provide image interface for programer user
+ */
+public class ImageFactor{
+    /** Image of the screen */
+    private Image image;
+    /** Path for image location in /res director*/
+    private String imagePath;
+
+    /**
+     * Create a new Image.
+     */
+    public ImageFactor() {
+    }
+    
+    /**
+     * Get image path
+     * @return the path of image
+     */
+    private String getImagePath(){
+        return imagePath;
+    }
+    
+    /**
+     * Set image path
+     * @param _imagePath is the path seted
+     */
+    public void setImagePath(String _imagePath){
+        imagePath = _imagePath;
+    }
+    
+    /**
+     * Set the image to be displayed.
+     * Update the width and height of the image and draw
+     * the border to fit around it in the offscreen image.
+     * @param _image a image to be displayed.
+     */
+    private void setImage(Image _image) {
+        image = _image;
+    }
+   
+    /** Get the image with to be displayable
+     * @return the image for display
+     */
+    public Image getImageDisplay(){
+        getImage();
+        return image;
+    }
+    
+    /** Get the image with to be displayable
+     * @return the image for display
+     */
+    public Image getImageDisplay(String _path){
+        this.setImagePath(_path);
+        getImage();
+        return image;
+    }
+    
+    /**
+     * Runs the animation and makes the repaint requests.
+     * The thread will exit when it is no longer the current
+     * Animation thread.
+     */
+    private void getImage() {
+        int namelen;
+        String name;
+        StringBuffer buf;
+        Image newImage;
+        try {
+            // Try the name supplied for the single image case.
+            newImage = createImage(getImagePath());
+            setImage(newImage);
+        } catch (IOException ex) {
+            try {
+                namelen = imagePath.length();
+                buf = new StringBuffer(namelen + 8);
+                buf.append(getImagePath());
+                
+                // Try for a sequence of images.
+                for (int i = 0; ; i++) {
+                    // locate the next in the series of images.
+                    buf.setLength(namelen);
+                    buf.append(i);
+                    buf.append(".png");
+                    name = buf.toString();
+                    
+                    newImage = createImage(name);
+                    setImage(newImage);
+                }
+            } catch (IOException io_ex) {
+            }
+        } catch (SecurityException se_ex) {
+            // no-retry, just put up the alert
+        }
+    }
+    
+    /**
+     * Fetch the image.  If the name begins with "http:"
+     * fetch it with connector.open and http.
+     * If it starts with "/" then load it from the
+     * resource file.
+     * @param name of the image to load
+     * @return image created
+     * @exception IOException if errors occuring doing loading
+     */
+    private Image createImage(String name) throws IOException {
+        if (name.startsWith("/")) {
+            // Load as a resource with Image.createImage
+            return Image.createImage(name);
+        }else {
+            throw new IOException("Unsupported media");
+        }
+    }
+}
