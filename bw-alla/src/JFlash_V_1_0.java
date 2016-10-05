@@ -46,7 +46,7 @@ public class JFlash_V_1_0 extends JFrame{
     
     /** Cria uma nova inst�ncia para a classe JFlash_V_1_0 */
     public JFlash_V_1_0() {
-        this.setTitle("JFlash 1.0");        
+        this.setTitle("JFlash 1.0 Alpha");        
         tk = Toolkit.getDefaultToolkit();        
         img = tk.getImage(getClass().getResource("/img/logojf.jpg"));        
         this.setIconImage(img);
