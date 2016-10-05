@@ -1,19 +1,45 @@
-/*
- * JFlash_V_1_0.java
- *
- * Created on 27 de Abril de 2003, 15:45
- */
-import gui.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.border.*;
 /**
- *
+ * Copyright (c) 2003. All rights reserved.
+ * This code is free software; you can redistribute it and/or modify it
+ * under the terms of the MIT License (MIT) only.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JToolBar;
+import javax.swing.border.EtchedBorder;
+
+import gui.JFlashWinColector;
+import gui.JFlashWinReply;
+/**
  * @author  Lincoln Souza Rocha
+ * @author Randy Quindai
  */
 public class JFlash_V_1_0 extends JFrame{
     /**
+	 * JFlash_V_1_0.java
+	 * Created on 27 de Abril de 2003, 15:45
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -44,7 +70,7 @@ public class JFlash_V_1_0 extends JFrame{
     
     private Image img;
     
-    /** Cria uma nova inst�ncia para a classe JFlash_V_1_0 */
+    /** Cria uma nova instancia para a classe JFlash_V_1_0 */
     public JFlash_V_1_0() {
         this.setTitle("JFlash 1.0 Alpha");        
         tk = Toolkit.getDefaultToolkit();        

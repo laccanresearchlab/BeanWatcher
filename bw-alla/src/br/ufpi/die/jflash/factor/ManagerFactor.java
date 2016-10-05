@@ -3,9 +3,9 @@
  *
  * Created on 9 de Junho de 2003, 21:45
  *
- * Ésta classe é responsavel por fazer a 
- * tomada de decisão a cerca da linguagem 
- * alvo para a geração de novos componentes.
+ * Esta classe eh responsavel por fazer a 
+ * tomada de decisÃ£o a cerca da linguagem 
+ * alvo para a geraÃ§Ã£o de novos componentes.
  */
 
 package br.ufpi.die.jflash.factor;
@@ -21,12 +21,12 @@ import  java.text.*;
  * @version 1.0
  */
 public class ManagerFactor {    
-    /* Esta classe faz a implementação de um analisador e gerador de código*/
+    /* Esta classe faz a implementaÃ§Ã£o de um analisador e gerador de cÃ³digo*/
         
-    /** Determina o formato para a data de geração do componente*/
+    /** Determina o formato para a data de geraÃ§Ã£o do componente*/
     private final String DATE_FORMAT = "dd MMMMMMMM yyyy, hh:mm";
 
-    /** Esta tabela guarda as tags estruturais da Template Java de geração.*/
+    /** Esta tabela guarda as tags estruturais da Template Java de geraÃ§Ã£o.*/
     private final String tag_table[] = { "<atribute_in>"               ,"<atribute_out>"               ,"<atribute_in_out>"                ,
                                          "</atribute_in>"              ,"</atribute_out>"              ,"</atribute_in_out>"               ,
                                          "<methods_in_pb>"             ,"<methods_out_pb>"              ,"<methods_in_out_pb>"             ,
@@ -40,13 +40,13 @@ public class ManagerFactor {
                                          "<_component_name>"           ,"<_author>"                    ,"<_date_of_created>"           
                                         };
     
-    /** Este atributo armazena totas a s informações necessárias a criação do componente.*/
+    /** Este atributo armazena totas as informaÃ§Ãµes necessÃ¡rias a criaÃ§Ã£o do componente.*/
     private ColectorDTO c ;
     
-    /** Este atributo guarda as informações sobre as portas do novo componente.*/
+    /** Este atributo guarda as informaÃ§Ãµes sobre as portas do novo componente.*/
     private AllComunicationPort ports;
     
-    /** Este atributo aponta para a tempalte padrão Java.*/
+    /** Este atributo aponta para a tempalte padrÃ£o Java.*/
     private File template_f;
     
     /** Este atributo aponta para o novo componente a ser criado.*/
@@ -58,16 +58,16 @@ public class ManagerFactor {
     /** Este atributo faz a leitura do template Java.*/
     private Reader in;
     
-    /** Este atributo armazena as informações contidas no Template Java.*/
+    /** Este atributo armazena as informaÃ§Ãµes contidas no Template Java.*/
     private StringBuffer buff;
     
-    /** Este atributo armazena as informações formatadas do componente afim de gera-lo.*/
+    /** Este atributo armazena as informaÃ§Ãµes formatadas do componente afim de gera-lo.*/
     private String template_str = null;
     
-    /** Este atributo armazena o nome da template de geração.*/
+    /** Este atributo armazena o nome da template de geraÃ§Ã£o.*/
     private String template_name;
     
-    /** Este atributo armazena a extenção do novo componente.*/
+    /** Este atributo armazena a extensÃ£o do novo componente.*/
     private String extension_name;
     
     /** Cria uma nova instancia de ManagerFactor */
@@ -75,11 +75,11 @@ public class ManagerFactor {
     }
     
     /**
-      * Este método e responsável pela escolha de qual a linguagem
-      * alvo será adotada para ageração do componente.
-      * @param _language é a linguagem alvo java e c.
-      * @param _c é um DTO com informações a cerca do novo componente.
-      * @param _ports são as portas para o novo componente.
+      * Escolha da linguagem
+      * alvo adotada para a geraÃ§Ã£o do componente.
+      * @param _language linguagem alvo java e c.
+      * @param _c DTO com informaÃ§Ãµes a cerca do novo componente.
+      * @param _ports portas para o novo componente.
       */
     public void createComponent(String _language,ColectorDTO _c, AllComunicationPort _ports){
     
@@ -90,17 +90,17 @@ public class ManagerFactor {
         this.ports = _ports;        
         
         try{
-          // Ésta variável é responsável  por carregar a informações de configuração.  
+          // Carrega as informaÃ§Ãµes de configuraÃ£o.  
           ManagerSetings m_setings = new ManagerSetings();                    
           i=0;
-          // Faz a verificação de qual será a linguagem alvo adotada.
+          // Faz a verificaÃ§Ã£o da linguagem alvo adotada.
           while(!_language.equals(m_setings.getLanguages()[i])){
               i++;
           }
           
           for(j=0; j < this.c.getNumPorts();j++){
               if(this.ports.getPort(j).getPort_type().equals("STRING")){
-                // Seta o tipo alfanumérioco para a respectiva linguagem alvo.  
+                // Seta o tipo alfanumÃ©rico para a respectiva linguagem alvo.  
                 this.ports.getPort(j).setPort_type(m_setings.getTypesString()[i]); 
                 
               }else if(this.ports.getPort(j).getPort_type().equals("INTEGER")){
@@ -122,19 +122,19 @@ public class ManagerFactor {
               
               if(this.ports.getPort(j).getPort_dimension().equals("1D")){
                   
-                  // Seta a dimenção(1) da porta na sintaxe adlinguagem alvo.
+                  // Seta a dimensÃ£o(1) da porta na sintaxe adlinguagem alvo.
                   this.ports.getPort(j).setPort_dimension( m_setings.get1D()[i]);                  
               }else if(this.ports.getPort(j).getPort_dimension().equals("2D")){
                   
-                  // Seta a dimenção(2) da porta na sintaxe adlinguagem alvo.
+                  // Seta a dimensÃ£o(2) da porta na sintaxe adlinguagem alvo.
                   this.ports.getPort(j).setPort_dimension( m_setings.get2D()[i]);
               }
           }
               
-          // Faz a seleção de qual template será utilizada.
+          // Faz a seleÃ§Ã£o de qual template sera utilizada.
           this.template_name = m_setings.getTemplates()[i];
           
-          // Faz a seleção da extenção do componente.
+          // Faz a seleÃ§Ã£o da extensÃ£o do componente.
           this.extension_name = m_setings.getExtensions()[i];
              
           // Carrega a template adequada.
@@ -142,12 +142,12 @@ public class ManagerFactor {
           this.in = new FileReader(template_f);                
           
           this.buff = new StringBuffer();          
-          // Faz a cópia do conteúdo da template para um Buffer.
+          // Faz a cÃ³pia do conteÃºdo da template para um Buffer.
           while ((ch = in.read()) != -1) {             
               buff.append((char) ch);	    
 	  } 
           
-          // Trasfere as informações contidas no Buffer para uma String de Edição.
+          // Trasfere as informaÃ§Ãµes contidas no Buffer para uma String de EdiÃ§Ã£o.
           this.template_str = buff.toString();
           
           this.in.close();          
@@ -157,8 +157,8 @@ public class ManagerFactor {
         }          
     }
     /** 
-      * Este método é público para permitir a criação do novo componente,
-      * aqui são disparadas as rotinhas que editam o formato para o novo
+      * Cria o novo componente,
+      * rotinas que editam o formato para o novo
       * componente.
       */
     private void factorComponent(){        
@@ -200,14 +200,14 @@ public class ManagerFactor {
                         break;
              }
           }
-          // Faz a formatação da porta de entrada, caso deva ser criada.
+          // Faz a formataÃ§Ã£o da porta de entrada, caso deva ser criada.
           if(in){
               this.writeComponentPort(0,in_ports, index_in);               
           }else{
               this.removePort(0);
           }
           
-          // Faz a formatação da porta de saida, caso deva ser criada.
+          // Faz a formataÃ§Ã£o da porta de saida, caso deva ser criada.
           
           if(out){
               this.writeComponentPort(1,out_ports, index_out); 
@@ -215,7 +215,7 @@ public class ManagerFactor {
               this.removePort(1);
           }
           
-          // Faz a formatação da porta de entrada/saida, caso deva ser criada.
+          // Faz a formataÃ§Ã£o da porta de entrada/saida, caso deva ser criada.
           
           if(inout){
               this.writeComponentPort(2,inout_ports, index_inout); 
@@ -224,11 +224,11 @@ public class ManagerFactor {
           }          
           
        }else{
-          // Faz a remoção de todas as tags de formatação. 
+          // Faz a remoÃ§Ã£o de todas as tags de formataÃ§Ã£o. 
           this.removeAll(); 
        } 
        
-       try{// Gera o componente no diretório especificado                     
+       try{// Gera o componente no diretorio especificado                     
           this.component_f = new  FileOutputStream(this.c.getComponent_path() + File.separator + this.c.getComponent_name()+this.extension_name);          
           this.component_wf = new  OutputStreamWriter(this.component_f);                     
           this.component_wf.write(this.template_str);          
@@ -239,10 +239,10 @@ public class ManagerFactor {
     }
     
     /**
-      * Este método é responsável por gerar as portas do novo componente.
-      * @param _type_ports é tipo da(as) portas.
-      * @param _posi_ports é um vetor que guarda as posições das portas no vetor de portas.
-      * @param _count_ports é a quantidade de portas de determinado tipo.
+      * Gera as portas do novo componente.
+      * @param _type_ports tipo da(as) portas.
+      * @param _posi_ports vetor que guarda as posiÃ§Ãµes das portas no vetor de portas.
+      * @param _count_ports quantidade de portas de determinado tipo.
       */    
     private void writeComponentPort(int _type_ports,int[] _posi_ports,int _count_ports){
         this.writePort_Atributes(_type_ports,_posi_ports,_count_ports);
@@ -251,10 +251,10 @@ public class ManagerFactor {
     }
     
     /**
-      * Este método é responsável por gerar as portas do novo componente.
-      * @param _type é tipo da(as) portas.
-      * @param _posi é um vetor que guarda as posições das portas no vetor de portas.
-      * @param _count é a quantidade de portas de determinado tipo.
+      * Gera as portes do novo componente.
+      * @param _type tipo da(as) portas.
+      * @param _posi vetor que guarda as posiÃ§Ãµes das portas no vetor de portas.
+      * @param _count quantidade de portas de determinado tipo.
       */
     private void writePort_Atributes(int _type,int[] _posi,int _count){
          String format,aux,atributes; 
@@ -292,11 +292,11 @@ public class ManagerFactor {
     }   
     
     /**
-      * Este méthodo  faz a confecção de todos os métodos relacinados a
+      * MÃ©todos relacinados a
       * determinadas portas especificadas em _type.
-      * @param _type é tipo da(as) portas.
-      * @param _posi é um vetor que guarda as posições das portas no vetor de portas.
-      * @param _count é a quantidade de portas de determinado tipo.
+      * @param _type tipo da(as) portas.
+      * @param _posi vetor que guarda as posiÃ§Ãµes das portas no vetor de portas.
+      * @param _count quantidade de portas de determinado tipo.
       */
     private void writePort_Methods(int _type,int[] _posi,int _count){
          String format,aux,methodspb,methodspv; 
@@ -366,10 +366,10 @@ public class ManagerFactor {
     }
     
     /**
-      * Este método insere o nome do usuário criador do componente
-      * e a data referente a sua criação.
-      * @param _tag_author_name é a tag referente ao nome do autor na Template.
-      * @param _tag_date_of_created é a tag referente a data de criação do componente.
+      * UsuÃ¡rio criador do componente
+      * e a data referente a sua criaÃ§Ã£o.
+      * @param _tag_author_name tag referente ao nome do autor na Template.
+      * @param _tag_date_of_created tag referente a data de criaÃ§Ã£o do componente.
       */
     private void writeAuthorName(String _tag_author_name,String _tag_date_of_created){ 
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT,Locale.getDefault());
@@ -382,9 +382,9 @@ public class ManagerFactor {
     }
 
     /**
-      * Este método insere o nome do componente no arquivo
-      * que fará a geração do novo componente.
-      * @param _tag_componet_name é a tag referente ao nome do componente na
+      * Nome do componente no arquivo
+      * que farÃ¡ a geraÃ§Ã£o do novo componente.
+      * @param _tag_componet_name tag referente ao nome do componente na
       * Template.
       */
     private void writeComponentName(String _tag_componet_name){        
@@ -393,11 +393,11 @@ public class ManagerFactor {
     }
     
     /**
-      * Este método captura o modelo padão de disposição das tags de dentro da
+      * Modelo padrÃ£o de disposiÃ§Ã£o das tags de dentro da
       * template.
-      * @param _template é o conteúdo da template.
-      * @param _tag_open é a tag delimitadora de inicio.
-      * @para _tag_close é a tag delimitadora de fim.
+      * @param _template conteÃºdo da template.
+      * @param _tag_open tag delimitadora de inicio.
+      * @para _tag_close tag delimitadora de fim.
       */
     private String getTamplateDef(String _template,String _tag_open,String _tag_close){        
         int posi_begin,posi_end;
@@ -408,10 +408,10 @@ public class ManagerFactor {
     }  
     
     /**
-      * Este método faz a substituição das tags unicas (que não tem delimitadores).
-      * @param _text é o conteudo da template.
-      * @param _fromTag é a tag que será substituída.
-      * @param _toValue é o valor real.
+      * SubstituiÃ§Ã£o das tags unicas (que nÃ£o tem delimitadores).
+      * @param _text conteÃºdo da template.
+      * @param _fromTag tag que serÃ¡ substituÃ­da.
+      * @param _toValue valor real.
       */    
     private String replaceWord(String _text,String _fromTag, String _toValue){
         int posi = _text.indexOf(_fromTag);      
@@ -426,11 +426,11 @@ public class ManagerFactor {
     }
     
    /**
-     * Este método faz a substituição das tags pelos valores reais.
-     * @param _text é conteúdo da tenplate.
-     * @param _begin_tag é a tag de abertura.
-     * @param _end_tag é a tag de finalisação.
-     * @param _new_atb é o valor que substituirá a tag.
+     * Substitui as tags pelos valores reais.
+     * @param _text conteÃºdo da template.
+     * @param _begin_tag tag de abertura.
+     * @param _end_tag tag de finalisaÃ§Ã£o.
+     * @param _new_atb valor que substituir a tag.
      */
     private String replacePort(String _text,String _begin_tag,String _end_tag, String _new_atb){
         int posi_begin, posi_end;
@@ -441,7 +441,7 @@ public class ManagerFactor {
     }
     
    /**
-     * Este método remove todas as tags do arquivo.
+     * Este mÃ©todo remove todas as tags do arquivo.
      */
     private void removeAll(){
         this.removePort(0);
@@ -450,8 +450,8 @@ public class ManagerFactor {
     }
     
     /**
-      * Este método remove as tags que definem as portas e seus métodos. Uma vez
-      * que elas não farão parte do código fonte do componente.
+      * Remove as tags que definem as portas e seus mÃ©todos. Uma vez
+      * que elas nÃ£o farÃ£o parte do cÃ³digo fonte do componente.
       * @param _type referencia a tipo da porta, se IN, OUT ou INOUT.
       */
     private void removePort(int _type){

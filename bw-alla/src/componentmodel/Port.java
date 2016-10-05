@@ -32,7 +32,7 @@ public class Port {
         type = _type + _dimension;
     }
     
-    /**
+    /*
      * This method is to set name of port
      * @param _name the new value for name port
      *
@@ -47,7 +47,7 @@ public class Port {
     private void setType(String _type, String _dimension){
         type = _type;
     }
-    
+    */
     /**
      * This method is to get name of port
      * @return the value of name port

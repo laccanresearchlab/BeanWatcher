@@ -19,7 +19,7 @@ public class ComponentFactoryTest {
         ComponentFactory compFactory = new ComponentFactory("DataFusion");
         
         code = compFactory.loadComponent();
-        code = "/*teste de implementa�ao*/\n" + code;
+        code = "/*teste de implementação*/\n" + code;
         
         compFactory.saveComponent(code);
         

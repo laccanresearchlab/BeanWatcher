@@ -4,7 +4,7 @@
  * Created on 11 de Junho de 2003, 19:11
  *
  * Esta classe funciona como uma modelador
- * de operações sobre um objeto da classe String.
+ * de operaï¿½ï¿½es sobre um objeto da classe String.
  */
 
 package util;
@@ -21,19 +21,19 @@ public final class StringUtil {
     }
 
     /**
-      * Este mátodo separa uma String de entrada em n subStrings
+      * Separa uma String de entrada em n subStrings
       * 
-      * @param _separator é separador das Strings.
+      * @param _separator separador das Strings.
       *  Valor default " " .
-      * @param _text é a String ea string a ser subdividida.
-      * @return array que são as Strings separadas.
+      * @param _text a String ea string a ser subdividida.
+      * @return array Strings separadas.
       *
       */
     public String[] getStrArray(String _separator,String _text){
         int i,num;
         num = this.getNunSubstring(_separator,_text);
         String array[] =  new String[num];               
-        // Faz a subdivisão de _text em n String armazenando em array
+        // Faz a subdivisï¿½o de _text em n String armazenando em array
         for(i=0;i<num;i++){
             array[i] =  this.getFirstWord(_separator, _text);
             _text =  this.dropWord(array[i], _text);
@@ -44,12 +44,12 @@ public final class StringUtil {
     }
     
     /**
-      * Este método retorna quantas Strings existem subdivididas
+      * Strings subdivididas
       * por um separador em uma String base.
       *
-      * @param _separator é o separador de Strings.
-      * @param _test é a string base para avaliação.
-      * @return count que é a quantidade de substrings.
+      * @param _separatorseparador de Strings.
+      * @param _teststring base para avaliaÃ§Ã£o.
+      * @return count quantidade de substrings.
       */
     public int getNunSubstring(String _separator,String _text){        
         int count=0;       
@@ -62,11 +62,10 @@ public final class StringUtil {
     }
     
     /**
-      * Este método remove a primeira ocorrência _word em _text.
       * 
-      * @param _word é a palavra que se deseja remover.
-      * @param _text é a String base para a remoção.
-      * @return _text é a String base sem a primeira palavra _word. 
+      * @param _word palavra que se deseja remover.
+      * @param _text String base para a remoÃ§Ã£o.
+      * @return _text String base sem a primeira palavra _word. 
       */
     public String dropWord(String _word,String _text){
         int posi = _text.indexOf(_word);      
@@ -78,10 +77,10 @@ public final class StringUtil {
     }
     
     /**
-      * Este método remove todas as ocorrencias de _word em _text
-      * @param _word é a palavra que se deseja remover.
-      * @param _text é a String base para a remoção.
-      * @return _text é a String base sem a palavra _word. 
+      * Remove todas as ocorrencias de _word em _text
+      * @param _word palavra que se deseja remover.
+      * @param _text String base para a remoÃ§Ã£o.
+      * @return _text String base sem a palavra _word. 
       */
     public String dropAllWord(String _word, String _text){
         int posi = _text.indexOf(_word);      
@@ -95,11 +94,11 @@ public final class StringUtil {
     }
     
     /**
-      * Este método retorna a primeira String delimitada pelo separador.
+      * Retorna a primeira String delimitada pelo separador.
       *
-      * @param _separator é o separador de String.
-      * @param _text é a String base de avaliação.
-      * @return String que é a primenira String de _text.
+      * @param _separator separador de String.
+      * @param _text String base de avaliaÃ§Ã£o.
+      * @return String primenira String de _text.
       */
     public String getFirstWord(String _separator,String _text){
         return(_text.substring(0,_text.indexOf(_separator)));

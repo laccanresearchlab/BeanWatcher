@@ -52,7 +52,7 @@ public class ImagePanel extends JPanel {
      * @param _x is the X position
      * @param _y is the Y position
      * @param _width is the width of panel
-     * @param _heigth is the height of panel
+     * @param _height is the height of panel
      */
     public ImagePanel(String _componentName, Image _image, int _x, int _y, int _width, int _height){
         this.componentName = _componentName;
@@ -67,11 +67,11 @@ public class ImagePanel extends JPanel {
     /**
      * Constructor for Image panel object, from image path
      * @param _componentName is the component's name
-     * @param _amagePath is the path of image
+     * @param _imagePath is the path of image
      * @param _x is the X position
      * @param _y is the Y position
      * @param _width is the width of panel
-     * @param _heigth is the height of panel
+     * @param _height is the height of panel
      */
     public ImagePanel(String _componentName, String _imagePath, int _x, int _y, 
                       int _width, int _height){
@@ -120,7 +120,7 @@ public class ImagePanel extends JPanel {
     
     /**
      * This method is to set width value
-     * @_width is the new value for atribute width
+     * @param _width is the new value for atribute width
      */
     public void setWidthLocal(int _width){
         this.width = _width;
@@ -136,7 +136,7 @@ public class ImagePanel extends JPanel {
     
     /**
      * This method is to set heigth value
-     * @_heigth is the new value for atribute heigth
+     * @param _height is the new value for atribute heigth
      */
     public void setHeightLocal(int _height){
         this.height = _height;
@@ -152,7 +152,7 @@ public class ImagePanel extends JPanel {
     
     /**
      * This method is to set positionX value
-     * @_valueX is the new value for atribute positionX
+     * @param _valueX is the new value for atribute positionX
      */
     public void setX(int _valueX){
         this.positionX = _valueX;
@@ -168,7 +168,7 @@ public class ImagePanel extends JPanel {
     
     /**
      * This method is to set positionY value
-     * @_valueY is the new value for atribute positionY
+     * @param _valueY is the new value for atribute positionY
      */
     public void setY(int _valueY){
         this.positionY = _valueY;
